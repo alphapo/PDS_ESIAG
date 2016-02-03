@@ -16,8 +16,8 @@ public ThreadManage2(ServerMT2 mainServer)
     tWork.start(); // demarrage du thread, la fonction run() est ici lancée
   }
 
-  //** Methode : attend les commandes dans la console et exécute l'action demandée **
-  public void run() // cette méthode doit obligatoirement être implémentée à cause de l'interface Runnable
+  //Methode : attend les commandes dans la console et exécute l'action demandée **
+  public void run()
   {
     try
     {
