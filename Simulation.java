@@ -1,5 +1,3 @@
-package pds;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,9 +17,9 @@ public class Simulation extends JFrame
 
 	private JPanel panel = new JPanel();
 	//initialisation des labels
-	private JLabel label = new JLabel("Type de prÃªt");
-	private JLabel label1 = new JLabel("Montant du prÃªt");
-	private JLabel label2 = new JLabel("DurÃ©e du prÃªt");
+	private JLabel label = new JLabel("Type de prêt");
+	private JLabel label1 = new JLabel("Montant du prêt");
+	private JLabel label2 = new JLabel("Durée du prêt");
 	private JLabel label3 = new JLabel("Taux fixe");
 	private JLabel label4 = new JLabel("Taux d'assurance");
 	
@@ -35,7 +33,7 @@ public class Simulation extends JFrame
 
 	public Simulation ()
 	{
-		this.setTitle("Simulation prÃªt");
+		this.setTitle("Simulation prêt");
 		this.setSize(400, 400);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -44,7 +42,7 @@ public class Simulation extends JFrame
 		panel.setBackground(Color.GRAY);
 		panel.setLayout(new BorderLayout());
 
-		String[] petStrings = { "crÃ©dit-bail", "Immobilier", "Consommation"};
+		String[] petStrings = { "crédit-bail", "Immobilier", "Consommation"};
 
 		JComboBox typePret = new JComboBox(petStrings);
 		typePret.setSelectedIndex(0);

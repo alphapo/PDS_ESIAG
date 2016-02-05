@@ -5,6 +5,7 @@ import java.io.*;
 class ThreadWork implements Runnable
 {
 private Thread tWork;
+private boolean connecte=false;
 private Socket ThreadSocket; 
 private InputStream	is;
 private InputStreamReader isr;
@@ -47,27 +48,24 @@ public void run()
 		    br = new BufferedReader(isr);
 		    os = ThreadSocket.getOutputStream();
 
-    	
-//    char charCur[] = new char[10];
-//    
-////      while(br.read(charCur, 0, 1)!=-1) // attente en boucle des messages provenant du client (bloquant sur _in.read())
-//      {
-//    	  mainServer.send(message,this.ThreadSocket);
-//    	  
-//
-////		    String conf = "Bienvenue, vous êtes le client n° "+nbClients;
-////		    pw.println(conf);
-//		    System.out.println("Le client n° "+nbClients+" vient de se connecter");
-//		    System.out.println("IP du client : "+socket.getRemoteSocketAddress());
-//    	  
-//    	  
-//    }
-        
-    while(true){
-    		String in = br.readLine();
-		    String conf = "Bienvenue "+in+", vous êtes le client n° "+mainServer.getNbClients();;
-	    	pw.println(conf);
-        }
+
+		    while(true){
+		    	//Vérification base de donnee
+		    		String in = br.readLine();
+		    		String pseudo = "usman";
+		    		System.out.println("Tentative de connexion de "+pseudo);
+		    		if(in.equals(pseudo)){
+//		    			 String conf = "Bienvene "+in+", vous êtes le client n° "+mainServer.getNbClients();
+		    			 pw.println("1");
+		    			 this.connecte=true;
+		    		}
+		    		else{
+//					    String conf = "Désolé, mais cet identifiant n'existe pas dans la BD !";
+				    	pw.println("0");
+				    	this.connecte=false;
+		    		}
+
+		        }
     	
     	//Gestion des messages entre clients et server 
     	

@@ -1,5 +1,3 @@
-package pds;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,11 +17,24 @@ import javax.swing.JTextField;
 
 public class Identification extends JFrame implements ActionListener
 {
-	//initialisation des variables Ã  communiquer au server
-	private String identifiant = null;
-	private String password = null;
+	//initialisation des variables à communiquer au server
+	private String identifiant;
+	private String password;
+	private ClientManage cm;
+	private boolean pass;
 	//private char[] password = null;
 	
+	public boolean getPass() {
+		return this.pass;
+	}
+
+
+	public void setPass(boolean pass) {
+		this.pass = pass;
+	}
+
+
+
 	private JPanel panel = new JPanel();
 	//initialisation label des champs texte
 	private JLabel labelLogin= new JLabel("Identifiant");;
@@ -35,8 +46,8 @@ public class Identification extends JFrame implements ActionListener
 	private JButton submit = new JButton("envoyer");
 
 	
-	public Identification()
-	{
+	public Identification(ClientManage cm)
+	{	this.cm=cm;
 	    this.setTitle("Identification");
 	    this.setSize(400, 150);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,7 +65,7 @@ public class Identification extends JFrame implements ActionListener
 	    //on indique au bouton que la fentre va ecouter ses actions
 	    submit.addActionListener(this);
 	    
-	    //crÃ©ation de diffÃ©rent layout pour positionner les champs et bouton
+	    //création de différent layout pour positionner les champs et bouton
 	    //1ere ligne
 		JPanel panel2 = new JPanel();
 		panel2.setLayout(new GridLayout(3,2));
@@ -82,9 +93,23 @@ public class Identification extends JFrame implements ActionListener
 	}
 	
 	
-	public static void main(String[] args)
-	{
-		new Identification();
+	public String getIdentifiant() {
+		return identifiant;
+	}
+
+
+	public void setIdentifiant(String identifiant) {
+		this.identifiant = identifiant;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 
@@ -99,9 +124,16 @@ public class Identification extends JFrame implements ActionListener
 			JOptionPane.showMessageDialog(null, "Veuillez renseigner les champs permettant de vous identifier");
 		}
 		else 
-			{
-				new Client(identifiant, password);
+			{	//On stocke les données pour que le clienrt les récupère afin de les envoyer au serveur.
+				this.setPassword(password);
+				this.setIdentifiant(identifiant);
+//				System.out.println(this.getPassword());
+//				new Client(identifiant, password);
+				this.setPass(true);
+				
 			}
 	}
+	
+
 	
 }

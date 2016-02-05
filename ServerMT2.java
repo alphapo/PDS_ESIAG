@@ -65,7 +65,7 @@ static private void printWelcome(Integer port)
 
 
   //Methode : détruit le client/thread, c'est à dire la connexion
-synchronized public void delClient(Thread t)
+public void delClient(Thread t)
 {
 	   nbClients--; // un client en moins
        threadArray.remove(t); //On retire le thread de l'arraylist
@@ -73,7 +73,7 @@ synchronized public void delClient(Thread t)
 }
   
   //Méthode permettant de définir la limite des connesions
-synchronized public boolean dispo()
+public boolean dispo()
 {
 	   if(threadArray.size()>4)
 	     return false;
@@ -84,14 +84,14 @@ synchronized public boolean dispo()
  
  
   //Methode : ajoute un nouveau client/thread dans la liste **
-synchronized public void addClient(Thread t)
+public void addClient(Thread t)
 {
        nbClients++; // un client en plus 
        threadArray.add(t); // on ajoute le nouveau threa à la liste de thread
 }
   
   //Methode affichant la liste de connexions
-synchronized public void listeClients()
+public void listeClients()
 {	  System.out.println("Nombre de clients connectés : "+this.getNbClients());
 	  if(!threadArray.isEmpty()){
      	 for(int i=0;i<threadArray.size(); i++){
@@ -105,7 +105,7 @@ synchronized public void listeClients()
 }
 
   //Methode : retourne le nombre de clients connectés **
-synchronized public int getNbClients()
+public int getNbClients()
 {
       return nbClients; // retourne le nombre de clients connectés
 }
