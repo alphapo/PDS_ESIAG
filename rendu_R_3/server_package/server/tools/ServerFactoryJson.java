@@ -5,6 +5,9 @@ import java.io.StringWriter;
 import javax.json.Json;
 import javax.json.stream.JsonGenerator;
 
+//Send JSon to client
+
+
 public class ServerFactoryJson {
 	public static String connectionDenied(){
 		StringWriter sw = new StringWriter();
@@ -28,4 +31,18 @@ public class ServerFactoryJson {
 		String jsonContent = sw.toString();
 		return jsonContent;
 	}
+	
+	public static String simulationDataAccepted(int nb){
+		StringWriter sw = new StringWriter();
+		JsonGenerator jsonGen = Json.createGenerator(sw);
+		jsonGen.writeStartObject()
+				.write("request","SIMULATION")
+				.write("result",nb)
+				.writeEnd()
+				.close();
+		String jsonContent = sw.toString();
+		return jsonContent;
+	}
+	
+	
 }

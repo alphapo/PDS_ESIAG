@@ -6,6 +6,8 @@ import org.json.JSONObject;
 import server.beans.Authentification;
 import server.beans.Client;
 
+
+//Read JSon
 public class ServerParserJson {
 	static public Authentification getAthentification(String jsonContent){
 		
@@ -51,5 +53,19 @@ public class ServerParserJson {
 			e.printStackTrace();
 		}
 		return client;
+	}
+	
+	static public int getIndicator(String jsonContent){
+		int nb = 0;
+		JSONObject jObject = null;
+		try {
+			jObject = new JSONObject(jsonContent);
+			nb = jObject.getInt("Indicator");
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nb;
 	}
 }

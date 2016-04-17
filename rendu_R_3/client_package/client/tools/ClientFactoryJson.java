@@ -34,4 +34,27 @@ public class ClientFactoryJson {
 		String jsonContent = sw.toString();
 		return jsonContent;
 	}
+	
+//	public static String makeJSONgetSimulation(){
+//		StringWriter sw = new StringWriter();
+//		JsonGenerator jsonGen = Json.createGenerator(sw);
+//		jsonGen.writeStartObject()
+//				.write("request","SIMULATION")
+//				.writeEnd()
+//				.close();
+//		String jsonContent = sw.toString();
+//		return jsonContent;
+//	}
+	
+	public static String makeJSONgetSimulation(int indicator){
+		StringWriter sw = new StringWriter();
+		JsonGenerator jsonGen = Json.createGenerator(sw);
+		jsonGen.writeStartObject()
+				.write("request","SIMULATION")
+				.write("Indicator", indicator)
+				.writeEnd()
+				.close();
+		String jsonContent = sw.toString();
+		return jsonContent;
+	}
 }

@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.Connection;
-
+import java.util.ArrayList;
 
 import features.Features;
 import server.beans.Authentification;
@@ -35,21 +35,26 @@ public class HandleClient extends Thread {
 		System.out.println("client "+clientSocket.getInetAddress()+" tries to connect");
 		String jsonContent; 
 		String result = null;
-
+		int nb = 0;
+		ArrayList resultArray = null ;
 		try{
 			while(!stop){
 				jsonContent = this.getContentJson(in);
 				switch(getRequest(jsonContent)){
 				case "AUTH":  result = Task.authentificationLaunched(jsonContent, connection);
-							  break;
+				break;
 				case "ADD_CLIENT": result = Task.addClientLaunched(jsonContent, connection);
-							       break;
+				break;
 				case "LOAN":  // Task for loan ...
-					          break;
+					break;
 
 				case "EXIT":  // Task when client exit...
-					          break;
+					break;
+				case "SIMULATION": result = Task.getStats(jsonContent, connection);
+//				System.out.println("Server recoit JSON SIMULATION !");
+				break;
 				}
+
 				out.println(result);
 			}
 		}catch(IOException e){

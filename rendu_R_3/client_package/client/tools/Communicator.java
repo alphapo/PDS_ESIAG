@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 
@@ -66,5 +67,16 @@ public class Communicator {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public int receiveDataSimulation() throws IOException{
+		try {
+			return ClientParserJson.resultQueryAccessSimulation(in.readLine());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+		
 	}
 }
