@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -101,7 +102,19 @@ public class Authentification extends JFrame implements ActionListener
 
 			communicator.sendData(ClientFactoryJson.makeJSONauthentification(identifiant, password));
 			if(communicator.receiveData().equals("OK") ) {
-				JOptionPane.showMessageDialog(null, "Vous etes connecté");
+
+				int res = JOptionPane.showOptionDialog(null, "Vous etes connecté", "Test", JOptionPane.DEFAULT_OPTION,
+				        JOptionPane.INFORMATION_MESSAGE, null, null, null);
+				System.out.println(res);
+
+				if(res ==0){
+					//After the connetion, the user can choose an operation (indicator, simulation...)
+					//Here, we have ihmIndicator
+					new IhmIndicator(communicator, identifiant);
+					this.dispose();
+				}
+				
+	
 			}else
 				JOptionPane.showMessageDialog(null, "Vos identifiants ne sont pas corrects");
 		}	
