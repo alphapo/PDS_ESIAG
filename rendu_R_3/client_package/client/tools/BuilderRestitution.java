@@ -6,10 +6,10 @@ import javax.swing.JPanel;
 
 public class BuilderRestitution {
 	
-	static void remindSimulatorParameters(JPanel contenair, Collection informations){}
+	static void remindSimulatorParameters(JPanel container, Collection informations){}
 	
-	static void drawArray(JPanel contenair, Collection informations){}
+	static void drawArray(JPanel container, Collection informations){}
 	
-	static void drawGraph(JPanel contenair, Collection informations){}
+	static void drawGraph(JPanel container, Collection informations){}
 	
 }
