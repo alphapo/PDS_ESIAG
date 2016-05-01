@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Properties;
 
 
@@ -69,14 +70,28 @@ public class Communicator {
 		return null;
 	}
 	
-	public int receiveDataSimulation() throws IOException{
-		try {
-			return ClientParserJson.resultQueryAccessSimulation(in.readLine());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return 0;
-		
-	}
+//	public int receiveDataSimulation() throws IOException{
+//		try {
+//			return ClientParserJson.resultQueryAccessSimulation(in.readLine());
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return 0;
+//		
+//	}
+	
+	
+	
+//	
+//	public Hashtable receiveDataConsumer() throws IOException{
+//		try {
+//			return ClientParserJson.resultQueryAccessConsumer(in.readLine());
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return null;
+//		
+//	}
 }

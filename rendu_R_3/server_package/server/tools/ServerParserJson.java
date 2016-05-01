@@ -20,7 +20,6 @@ public class ServerParserJson {
 			log = jObject.getString("login");
 			pwd = jObject.getString("password");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		authentification.setLogin(log);
@@ -34,7 +33,6 @@ public class ServerParserJson {
 			jObject = new JSONObject(jsonContent);
 			request = jObject.getString("request");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return request;
@@ -49,23 +47,9 @@ public class ServerParserJson {
 			client.setAddress(jObject.getString("address"));
 			
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return client;
 	}
 	
-	static public int getIndicator(String jsonContent){
-		int nb = 0;
-		JSONObject jObject = null;
-		try {
-			jObject = new JSONObject(jsonContent);
-			nb = jObject.getInt("Indicator");
-			
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return nb;
-	}
 }

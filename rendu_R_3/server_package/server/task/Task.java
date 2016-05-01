@@ -1,7 +1,7 @@
 package server.task;
 
 import java.sql.Connection;
-import java.util.ArrayList;
+import org.json.JSONException;
 
 import features.Features;
 import server.beans.Authentification;
@@ -31,25 +31,4 @@ public class Task {
 		return ServerFactoryJson.connectionAccepted();
 	}
 	
-//	public static ArrayList getSimulationData(Connection connection){
-//		return Features.getSimulationData(connection);
-//		
-//	}
-//	
-	public static String getStats(String jsonContent, Connection connection){
-		int indicator = ServerParserJson.getIndicator(jsonContent);
-		
-		//Indicator indicates the type of indicator
-		if(indicator == 1){
-			result = ServerFactoryJson.simulationDataAccepted(Features.nbLoanContracted(connection));
-			System.out.println("Cest 1");
-		}
-		else if(indicator == 2){
-			result = ServerFactoryJson.simulationDataAccepted(Features.nbSimulation(connection));
-			System.out.println("Cest 2");
-		}
-		
-		
-		return result;
-	}
 }

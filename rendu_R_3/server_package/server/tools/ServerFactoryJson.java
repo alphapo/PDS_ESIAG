@@ -3,7 +3,13 @@ package server.tools;
 import java.io.StringWriter;
 
 import javax.json.Json;
+import javax.json.JsonValue;
 import javax.json.stream.JsonGenerator;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONStringer;
+import org.json.JSONWriter;
 
 //Send JSon to client
 
@@ -32,17 +38,6 @@ public class ServerFactoryJson {
 		return jsonContent;
 	}
 	
-	public static String simulationDataAccepted(int nb){
-		StringWriter sw = new StringWriter();
-		JsonGenerator jsonGen = Json.createGenerator(sw);
-		jsonGen.writeStartObject()
-				.write("request","SIMULATION")
-				.write("result",nb)
-				.writeEnd()
-				.close();
-		String jsonContent = sw.toString();
-		return jsonContent;
-	}
-	
+
 	
 }
