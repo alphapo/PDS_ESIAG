@@ -1,0 +1,11 @@
+ERROR	2016-04-14 13:34:56,860	0	ConnectionPool	[main]	init
+INFO	2016-04-14 13:34:56,864	4	ConnectionPool	[main]	Connection Pool is NOT full! Proceeding with adding new connections
+INFO	2016-04-14 13:34:57,748	888	ConnectionPool	[main]	Connection Pool is NOT full! Proceeding with adding new connections
+INFO	2016-04-14 13:34:57,797	937	ConnectionPool	[main]	Connection Pool is NOT full! Proceeding with adding new connections
+INFO	2016-04-14 13:34:57,837	977	ConnectionPool	[main]	Connection Pool is NOT full! Proceeding with adding new connections
+INFO	2016-04-14 13:34:57,876	1016	ConnectionPool	[main]	Connection Pool is NOT full! Proceeding with adding new connections
+INFO	2016-04-14 13:34:57,912	1052	ConnectionPool	[main]	Connection Pool is NOT full! Proceeding with adding new connections
+INFO	2016-04-14 13:34:57,939	1079	ConnectionPool	[main]	Connection Pool is NOT full! Proceeding with adding new connections
+INFO	2016-04-14 13:34:57,972	1112	ConnectionPool	[main]	Connection Pool is NOT full! Proceeding with adding new connections
+INFO	2016-04-14 13:34:58,037	1177	ConnectionPool	[main]	Connection Pool is NOT full! Proceeding with adding new connections
+INFO	2016-04-14 13:34:58,064	1204	ConnectionPool	[main]	Connection Pool is NOT full! Proceeding with adding new connections
