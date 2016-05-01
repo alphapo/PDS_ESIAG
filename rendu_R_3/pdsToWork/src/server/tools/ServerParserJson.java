@@ -1,13 +1,14 @@
 package server.tools;
 
+import javax.json.Json;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import server.beans.Authentification;
 import server.beans.Client;
+import server.beans.Simulation;
 
-
-//Read JSon
 public class ServerParserJson {
 	static public Authentification getAthentification(String jsonContent){
 		
@@ -20,6 +21,7 @@ public class ServerParserJson {
 			log = jObject.getString("login");
 			pwd = jObject.getString("password");
 		} catch (JSONException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		authentification.setLogin(log);
@@ -33,6 +35,7 @@ public class ServerParserJson {
 			jObject = new JSONObject(jsonContent);
 			request = jObject.getString("request");
 		} catch (JSONException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return request;
@@ -47,9 +50,34 @@ public class ServerParserJson {
 			client.setAddress(jObject.getString("address"));
 			
 		} catch (JSONException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return client;
+	}
+	
+	// method to recover data entered in the interface
+	
+	static public Simulation getSimulationData(String jsonContent){
+		Simulation simulation = new Simulation(); 
+		int  amount=0;
+		int duration=0;
+		String loanType= null;
+		JSONObject jObject = null;
+		try {
+			jObject = new JSONObject(jsonContent);
+			amount=jObject.getInt("amount");
+			duration=jObject.getInt("duration");
+			loanType=jObject.getString("loanType");
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		simulation.setAmount(amount);
+		simulation.setDuration(duration);
+		simulation.setLoanType(loanType);
+		return simulation;
 	}
 	
 }

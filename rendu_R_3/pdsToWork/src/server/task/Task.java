@@ -1,7 +1,6 @@
 package server.task;
 
 import java.sql.Connection;
-import org.json.JSONException;
 
 import features.Features;
 import server.beans.Authentification;
@@ -11,7 +10,6 @@ import server.tools.ServerParserJson;
 
 public class Task {
 	static String result = null;
-	static int nb=0;
 	
 	public static String authentificationLaunched(String jsonContent, Connection connection){
 		// we recover json data
@@ -30,5 +28,13 @@ public class Task {
 		Features.addClient(client, connection);
 		return ServerFactoryJson.connectionAccepted();
 	}
+
+	public static String simulationLaunched(String jsonContent, Connection connection) {
+		// TODO Auto-generated method stub
+		
+		// Calcul de la simulation to do.. 
+		return null; 
+	}
+	 
 	
 }

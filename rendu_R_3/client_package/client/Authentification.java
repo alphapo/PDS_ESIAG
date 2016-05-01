@@ -7,6 +7,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -110,7 +113,12 @@ public class Authentification extends JFrame implements ActionListener
 				if(res ==0){
 					//After the connetion, the user can choose an operation (indicator, simulation...)
 					//Here, we have ihmIndicator
-					new IhmIndicator(communicator, identifiant);
+					try {
+						new IhmIndicator(communicator, identifiant);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					this.dispose();
 				}
 				
