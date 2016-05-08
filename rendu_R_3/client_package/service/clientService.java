@@ -27,8 +27,8 @@ public class clientService {
     	return htLoan;
 	}
 	
-	public int receiveNbSimulation(boolean date) throws RemoteException, SQLException{	
-    	return stub.nbSimulation(date);
+	public int receiveNbSimulation(boolean date, boolean loanTypeId) throws RemoteException, SQLException{	
+    	return stub.nbSimulation(date, loanTypeId);
 	}
 	
 	public int receiveSimulationDate(String dateInf, String dateSup) throws RemoteException, SQLException{	
@@ -39,20 +39,28 @@ public class clientService {
     	return stub.nbSimulationPerConsumer(idConsumer);
 	}
 	
-	public float receiveAvgDurationLoan(boolean date) throws RemoteException, SQLException{	
-    	return stub.avgDurationLoan(date);
+	public float receiveAvgDurationLoan(boolean date, boolean loanTypeId) throws RemoteException, SQLException{	
+    	return stub.avgDurationLoan(date, loanTypeId);
 	}
 	
-	public float receiveAvgAmountLoan(boolean date) throws RemoteException, SQLException{	
-    	return stub.avgAmountLoan(date);
+	public float receiveAvgAmountLoan(boolean date, boolean loanTypeId) throws RemoteException, SQLException{	
+    	return stub.avgAmountLoan(date, loanTypeId);
 	}
 	
-	public int receiveNbLoan(boolean date) throws RemoteException, SQLException{	
-    	return stub.nbLoan(date);
+	public int receiveNbLoan(boolean date, boolean loanTypeId ) throws RemoteException, SQLException{	
+    	return stub.nbLoan(date, loanTypeId);
+	}
+	
+	public float receiveNbInterest(boolean date, boolean loanTypeId ) throws RemoteException, SQLException{	
+    	return stub.nbInterest(date, loanTypeId);
 	}
 
 	public void saveDate(String dateInf, String dateSup) throws RemoteException {
 		stub.saveDate( dateInf,  dateSup);
 	}
+	public void saveLoanTypeId(int id) throws RemoteException {
+		stub.saveLoanTypeId(id);
+	}
+	
 
 }

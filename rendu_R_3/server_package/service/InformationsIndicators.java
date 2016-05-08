@@ -10,9 +10,12 @@ public interface InformationsIndicators extends Remote{
 	public Hashtable<Integer, String> getHashCustomers() throws RemoteException;
 	public Hashtable<Integer, String> getHashLoanType() throws RemoteException;
 	public int nbSimulationPerConsumer(int idConsumer) throws RemoteException;
-	public int nbSimulation(boolean date) throws RemoteException;
-	public float avgDurationLoan(boolean date) throws RemoteException;
-	public float avgAmountLoan(boolean date) throws RemoteException;
-	public int nbLoan(boolean date) throws RemoteException;
+	public int nbSimulation(boolean date, boolean loanTypeId) throws RemoteException;
+	public float avgDurationLoan(boolean date, boolean loanTypeId) throws RemoteException;
+	public float avgAmountLoan(boolean date, boolean loanTypeId) throws RemoteException;
+	public int nbLoan(boolean date, boolean loanTypeId) throws RemoteException;
+	public float nbInterest(boolean date, boolean loanTypeId) throws RemoteException;
 	public void saveDate(String dateInf, String dateSup) throws RemoteException;
+	public void saveLoanTypeId(int id) throws RemoteException;
+
 }

@@ -50,12 +50,12 @@ public class FeaturesTest {
 ////		assertEquals(5,f.nbLoanContracted(conn.getConnectionFromPool()));
 ////	}
 	
-	@Test
-	//return the number of loan contracted without date
-	public void testNbSimulation() {
-
-		assertEquals(12,Features.nbSimulation(conn.getConnectionFromPool(), false));
-	}
+//	@Test
+//	//return the number of loan contracted without date
+//	public void testNbSimulation() {
+//
+//		assertEquals(12,Features.nbSimulation(conn.getConnectionFromPool(), false));
+//	}
 	
 	
 	@Test
@@ -77,10 +77,16 @@ public class FeaturesTest {
 	//returns average number of loan without date
 	@Test
 	public void testAvgDurationLoanBis() {
-		assertEquals(9.5, Features.avgDurationLoan(conn.getConnectionFromPool(),false), 0.0f);
+		assertEquals(16, Features.avgDurationLoan(conn.getConnectionFromPool(),false, true), 0.0f);
 
 	}
 	
+	//returns average number of loan without date
+	@Test
+	public void testNbInterest() {
+		assertEquals(16, Features.nbInterest(conn.getConnectionFromPool(),false, false), 0.0f);
+
+	}
 	
 	
 //	

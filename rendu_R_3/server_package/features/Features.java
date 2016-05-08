@@ -106,18 +106,28 @@ public class Features {
 
 	
 	//Return the number of simulation
-	public static int nbSimulation(Connection connection, boolean date){
+	public static int nbSimulation(Connection connection, boolean date, boolean loanTypeId){
 		int nb=0;
 		ResultSet rs;
-		String s = HandleClient.getDate("", "");
+		String s = HandleClient.getDate();
+		int id = HandleClient.getLoanType();
+
 		String sql;
 		try {
 			Statement state = connection.createStatement();
-			if(date==true){
-				sql = "Select * from simulation "+s;
+			
+			//Each condition answers each ckeckBox selection
+			if(date==true && loanTypeId==false){
+				sql = "Select * from simulation where "+s;
+			}
+			else if(date ==true && loanTypeId==true ){
+				sql = "Select * from simulation where "+s+" and id_loanType=\""+id+"\"";
+			}
+			else if(date ==false && loanTypeId==true ){
+				sql = "Select * from simulation where id_loanType=\""+id+"\"";
 			}
 			else
-				sql = "Select * from simulation";
+				sql = "Select * from loan";
 
 			rs = state.executeQuery(sql);
 
@@ -190,19 +200,30 @@ public class Features {
 	
 	
 	//Return the number of loan contracted 
-	public static int nbLoan(Connection connection, boolean date){
+	public static int nbLoan(Connection connection, boolean date, boolean loanTypeId){
 		int nb=0;
-		String s = HandleClient.getDate("", "");
+		String s = HandleClient.getDate();
+		int id = HandleClient.getLoanType();
+
 		ResultSet rs;
 		String sql = null;
 		try {
 			Statement state = connection.createStatement();
-
-			if(date==true){
-				sql = "Select * from loan l, simulation s "+s+" and l.id_simulation=s.id_simulation";
+			//Each condition answers each ckeckBox selection
+			if(date==true && loanTypeId==false){
+				sql = "Select * from loan l, simulation s where "+s+" and l.id_simulation=s.id_simulation";
+			}
+			else if(date ==true && loanTypeId==true ){
+				sql = "Select * from loan l, simulation s where "+s+" and l.id_simulation=s.id_simulation and s.id_loanType=\""+id+"\"";
+			}
+			else if(date ==false && loanTypeId==true ){
+				sql = "Select * from loan l, simulation s where l.id_simulation=s.id_simulation and s.id_loanType=\""+id+"\"";
 			}
 			else
 				sql = "Select * from loan natural join simulation";
+			
+			System.out.println("Date : "+date+" - loanTypeId : "+loanTypeId);
+			System.out.println(sql);
 			
 			rs = state.executeQuery(sql);
 			
@@ -216,23 +237,26 @@ public class Features {
 		
 	}
 	
-	//Returns the average duration of loans
-	public static float avgDurationLoan(Connection connection, boolean date){
+	//Returns the average duration of loans group by loantype
+	public static float avgDurationLoan(Connection connection, boolean date, boolean loanTypeId){
 		float nb=0;
-		String s = HandleClient.getDate("", "");
+		String s = HandleClient.getDate();
+		int id = HandleClient.getLoanType();
 		ResultSet rs;
 		String sql = null;
 		try {
 			Statement state = connection.createStatement();
 			
 			if(date==true)
-				sql = "SELECT AVG(duration) FROM simulation "+s;
+				sql = "SELECT AVG(duration) FROM simulation where "+s+" and id_loanType=\""+id+"\"";
 			else
-				sql = "SELECT AVG(duration) FROM simulation";
+				sql = "SELECT AVG(duration) FROM simulation where id_loanType=\""+id+"\"";
 			
 			rs = state.executeQuery(sql);
 			rs.next();
 			nb = rs.getFloat(1);
+			
+			System.out.println("Affichae durée moyenne pret par type de pret : "+nb);
 
 		}catch ( SQLException ex){
 			ex.printStackTrace();
@@ -241,20 +265,24 @@ public class Features {
 	}
 	
 	
-	//Returns the average amount of loans
-	public static float avgAmountLoan(Connection connection, boolean date){
+	//Returns the average amount of loans group by loantype
+	public static float avgAmountLoan(Connection connection, boolean date, boolean loanTypeId){
 		float nb=0;
-		String s = HandleClient.getDate("", "");
+		String s = HandleClient.getDate();
+		int id = HandleClient.getLoanType();
 		ResultSet rs;
 		String sql;
 		try {
 			Statement state = connection.createStatement();
 
 			if(date==true)
-				sql = "SELECT AVG(amount) FROM simulation "+s;
+				sql = "SELECT AVG(amount) FROM simulation where "+s+" and id_loanType=\""+id+"\"";
 			else
-				sql = "SELECT AVG(amount) FROM simulation";
+				sql = "SELECT AVG(amount) FROM simulation where id_loanType=\""+id+"\"";
 			
+			
+			System.out.println("Affichae montant moyen pret par type de pret : "+nb);
+
 			
 			rs = state.executeQuery(sql);
 			rs.next();
@@ -266,7 +294,38 @@ public class Features {
 		return nb;
 	}
 	
-	
+	//Returns some interest
+	public static float nbInterest(Connection connection, boolean date, boolean loanTypeId){
+		float nb=0;
+		String s = HandleClient.getDate();
+		int id = HandleClient.getLoanType();
+		int duration;
+		float percent, interest, finalInterest;
+		ResultSet rs;
+		String sql;
+		try {
+			Statement state = connection.createStatement();
+
+			if(date==true)
+				sql = "SELECT * FROM simulation where "+s+" and id_loanType=\""+id+"\"";
+			else
+				sql = "SELECT * FROM simulation where id_loanType=\""+id+"\"";
+		
+			rs = state.executeQuery(sql);
+			
+			while(rs.next()){
+				duration = rs.getInt("duration");
+				percent = rs.getFloat("interestRate")*(0.01f);
+				interest = percent*((float)rs.getInt("amount"));
+				finalInterest = (float)(interest * duration);
+				nb=nb+finalInterest;
+			}
+			
+		}catch ( SQLException ex){
+			ex.printStackTrace();
+		}
+		return nb;
+	}
 	
 	
 	
