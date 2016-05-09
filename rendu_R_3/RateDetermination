@@ -1,64 +1,60 @@
-// Determination of the rate thanks to a fixed rate given by the head quarter
-
 package determinationtaux;
 
-public class DeterminationTaux {
+public class RateDetermination {
 
-	int duree = 0;    // ici il faut rentrer la durée du prêt
-	int age = 0;      // ici il faut rentrer l'âge de l'emprunteur
-	boolean sante;	  // ici il faut 0 si l'emprunteur est en bonne santé et 1 si non
-	boolean histpre; 
-	double Tauxfixe = 2;
-	double nouveauTaux = 0;
+	int duration = 0;    // Here we must return the loan term
+	int age = 0;      // Here we must return to the age of the borrower
+	boolean health;	  // Here it must be said if the borrower is in good health or not
+	boolean loanhist;  // Here it must be said if the borrower already had a loan or not
+	double Fixedrate = 2;
+	double newRate = 0;
 	
-	public DeterminationTaux(int duree, int age, boolean sante, boolean histpre, double tauxfixe) {
-		this.duree = duree;
+	public RateDetermination(int duration, int age, boolean health, boolean loanhist, double fixedrate) {
+		this.duration = duration;
 		this.age = age;
-		this.sante = sante;
-		this.histpre = histpre;
-		Tauxfixe = tauxfixe;
+		this.health = health;
+		this.loanhist = loanhist;
+		Fixedrate = fixedrate;
 	}
 	
-	public  double changementTaux(){
+	public  double changeRate(){
 		
-		double tauxcalc = this.Tauxfixe;
-		if (duree < 10 && duree >= 2){
-			tauxcalc -=0.025;
+		double calcrate = this.Fixedrate;
+		if (duration < 10 && duration >= 2){
+			calcrate -=0.025;
 			System.out.println("1");
 		}
-		else if (duree < 30 && duree > 20){
-			tauxcalc += 0.025; 
+		else if (duration < 30 && duration > 20){
+			calcrate += 0.025; 
 			System.out.println("2");
 		}
 		
 		if (age < 26 && age > 16){
-			tauxcalc +=0.025;
+			calcrate +=0.025;
 			System.out.println("3");
 		}
 		else if (age < 60 && age > 41){
-			tauxcalc -= 0.025;
+			calcrate -= 0.025;
 			System.out.println("4");
 		}
-		if (sante != false){
-			tauxcalc += 0.1; 
+		if (health != false){
+			calcrate += 0.1; 
 			System.out.println("5");
 		}
-		if (histpre == true) {
-			tauxcalc -= 0.05;
+		if (loanhist == true) {
+			calcrate -= 0.05;
 			System.out.println("6");
 		}
-		else if (histpre == false){
-			tauxcalc += 0.05;
+		else if (loanhist == false){
+			calcrate += 0.05;
 			System.out.println("7");
 		}
-		return tauxcalc;
+		return calcrate;
 		//if	
 	}
 		
 	public static void main(String[] args) {
-		DeterminationTaux d1 =new DeterminationTaux(25, 18, true, false, 2);
-		System.out.println(d1.changementTaux());
+		RateDetermination d1 =new RateDetermination(5, 55, false, true, 2);
+		System.out.println(d1.changeRate());
 	}
  }	
-	
-	
