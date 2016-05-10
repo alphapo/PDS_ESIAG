@@ -1,24 +1,24 @@
-package test2;
+package client.tools;
 
 public class TempoData {
-	String number;
+	String numberOfDueDate;
 	double monthly;
 	double interest;
 	double insurance;
 	double remaining;
-	double capitalAmorti;
+	double amortizedCapital;
 	
-	public TempoData(String number, double monthly, double capitalAmorti, double interest, double insurance, double remaining ) {
-		this.number = number;
+	public TempoData(String numberOfDueDate, double monthly, double amortizedCapital, double interest, double insurance, double remaining ) {
+		this.numberOfDueDate = numberOfDueDate;
 		this.monthly = monthly; 
 		this.insurance = insurance;
 		this.interest = interest;
 		this.remaining = remaining;
-		this.capitalAmorti = capitalAmorti;
+		this.amortizedCapital = amortizedCapital;
 	}
 
-	public String getNumber() {
-		return number;
+	public String getNumberOfDueDate() {
+		return numberOfDueDate;
 	}
 
 	public double getMonthly() {
@@ -37,8 +37,8 @@ public class TempoData {
 		return remaining;
 	}
 
-	public double getCapitalAmorti() {
-		return capitalAmorti;
+	public double getAmortizedCapital() {
+		return amortizedCapital;
 	}
 
 	
