@@ -14,7 +14,7 @@ public class TemporaryMain {
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		/*
-		 * --------------- Parameters ----------------------------
+		 *  --------------- Parameters ----------------------------
 		 *  amount: 10 000 ; 
 		 *  rate by year: 3,6% ;
 		 *  duration: 10 months ; 
@@ -23,8 +23,9 @@ public class TemporaryMain {
 		 *  
 		 */
 		
-		LoanRepaymentPlan loanRepaymentPlan = new LoanRepaymentPlan(10000, 0.036, 10, 30);
+		LoanRepaymentPlan loanRepaymentPlan = new LoanRepaymentPlan(10000, 0.005, 10, 50);
 		
+		Printer.load(loanRepaymentPlan.getData(), 10000, 0.005, 10, 50);
 		
 		JTable arrayFrame = new JTable(new ShowArrayRestitution(loanRepaymentPlan.getData()));
 
@@ -33,9 +34,10 @@ public class TemporaryMain {
 		jframe.setVisible(true);
 		
 		
-		new ShowGraphicLine(loanRepaymentPlan.getData(), "Graphique en ligne" ,"Restitution graphique du tableau d'amortissement"); 
 		
-		new ShowGraphicBar3D(loanRepaymentPlan.getData(), "Graphique en bande" ,"Restitution graphique du tableau d'amortissement");
+		new ShowGraphicLine(loanRepaymentPlan.getData(), "Graphique" ,"Restitution graphique de la simulation"); 
+		
+		new ShowGraphicBar3D(loanRepaymentPlan.getData(), "Graphique" ,"Restitution graphique de la simulation");
 	}
 
 }
