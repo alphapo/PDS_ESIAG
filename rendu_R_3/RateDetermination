@@ -37,17 +37,21 @@ public class RateDetermination {
 			calcrate -= 0.025;
 			System.out.println("4");
 		}
-		if (health != false){
+		if (health == true){
 			calcrate += 0.1; 
 			System.out.println("5");
 		}
+		else if (health == false){
+			calcrate -= 0.1; 
+			System.out.println("6");
+		}
 		if (loanhist == true) {
 			calcrate -= 0.05;
-			System.out.println("6");
+			System.out.println("7");
 		}
 		else if (loanhist == false){
 			calcrate += 0.05;
-			System.out.println("7");
+			System.out.println("8");
 		}
 		return calcrate;
 		//if	
@@ -58,3 +62,5 @@ public class RateDetermination {
 		System.out.println(d1.changeRate());
 	}
  }	
+	
+	
