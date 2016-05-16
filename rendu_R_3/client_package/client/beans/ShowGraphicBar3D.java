@@ -1,4 +1,5 @@
-package client.tools;
+package client.beans;
+
 
 
 import java.awt.Dimension;
@@ -15,6 +16,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -25,17 +27,15 @@ import org.jfree.ui.RefineryUtilities;
 
 
 
-public class ShowGraphicLine extends ApplicationFrame{
+public class ShowGraphicBar3D extends ApplicationFrame{
 	
-	private ArrayList<TempoData> data = new ArrayList<TempoData>();
+	private  ArrayList<TempoData> data = new ArrayList<TempoData>();
 	
-	public ShowGraphicLine(final ArrayList<TempoData> data, String applicationTitle , String chartTitle )
+	public ShowGraphicBar3D(final ArrayList<TempoData> data,  String applicationTitle , String chartTitle )
 	{
 		super(applicationTitle);
-		
 		this.data = data;
-		
-		JFreeChart lineChart = ChartFactory.createLineChart(
+		JFreeChart lineChart = ChartFactory.createBarChart3D(
 				chartTitle,
 				"Echéances","Montant en Euro",
 				createDataset(),
@@ -44,13 +44,11 @@ public class ShowGraphicLine extends ApplicationFrame{
 
 		ChartPanel chartPanel = new ChartPanel( lineChart );
 		chartPanel.setPreferredSize( new Dimension( 860 , 467 ) );
-		CategoryPlot plot = lineChart.getCategoryPlot();
-		LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
-		renderer.setBaseShapesVisible(true);
-		setContentPane( chartPanel );
-		this.pack( );
-		RefineryUtilities.centerFrameOnScreen( this );
-		this.setVisible( true );
+		
+		setContentPane(chartPanel);
+		this.pack();
+		RefineryUtilities.centerFrameOnScreen(this);
+		this.setVisible(true);
 	}
 
 	private DefaultCategoryDataset createDataset( )
@@ -59,17 +57,10 @@ public class ShowGraphicLine extends ApplicationFrame{
 
 		for(int i = 0; i<(data.size()-1); i++){
 			dataset.addValue( data.get(i).getAmortizedCapital() , "Capital Amorti", (data.get(i).getNumberOfDueDate()).toString() );
-			dataset.addValue( data.get(i).getInterest(), "Interets",  (data.get(i).getNumberOfDueDate()).toString());
-			//    	  dataset.addValue(data.get(i).getRemaining(), "Capital restant",   (data.get(i).getNumber()).toString() );
-			//    	  dataset.addValue(data.get(i).getInsurance() , "Assurance", (data.get(i).getNumber()).toString() );
+			dataset.addValue( data.get(i).getInterest(),       "Interets",       (data.get(i).getNumberOfDueDate()).toString() );
+			dataset.addValue( data.get(i).getRemaining(),      "Capital restant",(data.get(i).getNumberOfDueDate()).toString() );
+			dataset.addValue( data.get(i).getInsurance() ,     "Assurance",      (data.get(i).getNumberOfDueDate()).toString() );
 		}
 		return dataset;
 	}
-	//   public static void main( String[ ] args ) 
-	//   {
-	//	   GraphicLine chart = new GraphicLine(
-	//      "Graphique" ,
-	//      "Restitution graphique de la simulation");    
-	//   }
-
 }

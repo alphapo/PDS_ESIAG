@@ -1,4 +1,4 @@
-package client.tools;
+package client.beans;
 
 public class TempoData {
 	String numberOfDueDate;
