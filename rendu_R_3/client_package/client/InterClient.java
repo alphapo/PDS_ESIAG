@@ -1,6 +1,17 @@
 package windowBuilderTest;
 
 import java.awt.BorderLayout;
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.text.*;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+
+import java.text.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,6 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.awt.event.ActionEvent;
 
 public class InterClient extends JFrame {
@@ -46,63 +58,99 @@ public class InterClient extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		Label label = new Label("Simulateur de pr\u00EAt ");
-		label.setAlignment(Label.CENTER);
-		label.setFont(new Font("Dialog", Font.BOLD, 16));
-		label.setBounds(148, 10, 258, 22);
-		contentPane.add(label);
-		
-		Label label_1 = new Label("Montant du pr\u00EAt");
-		label_1.setFont(new Font("Dialog", Font.BOLD, 12));
-		label_1.setAlignment(Label.CENTER);
-		label_1.setBounds(97, 64, 103, 22);
-		contentPane.add(label_1);
-		
-		TextField textField = new TextField();
-		textField.setBounds(212, 129, 119, 22);
-		contentPane.add(textField);
-		
-		Label label_2 = new Label("Dur\u00E9e du pr\u00EAt");
-		label_2.setFont(new Font("Dialog", Font.BOLD, 12));
-		label_2.setBounds(97, 129, 91, 22);
-		contentPane.add(label_2);
-		
-		TextField textField_1 = new TextField();
-		textField_1.setBounds(212, 64, 119, 22);
-		contentPane.add(textField_1);
-		
-		Label label_3 = new Label("Type de pr\u00EAt");
-		label_3.setFont(new Font("Dialog", Font.BOLD, 12));
-		label_3.setBounds(97, 196, 80, 22);
-		contentPane.add(label_3);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(212, 198, 119, 20);
-		contentPane.add(comboBox);
-		
+
+		/*
+		 * the labels
+		 */
+
+		Label title = new Label("Simulateur de pr\u00EAt ");
+		title.setAlignment(Label.CENTER);
+		title.setFont(new Font("Dialog", Font.BOLD, 16));
+		title.setBounds(148, 10, 258, 22);
+		contentPane.add(title);
+
+		Label amount = new Label("Montant du pr\u00EAt");
+		amount.setFont(new Font("Dialog", Font.BOLD, 12));
+		amount.setAlignment(Label.CENTER);
+		amount.setBounds(97, 64, 103, 22);
+		contentPane.add(amount);
+
+		Label duration = new Label("Dur\u00E9e du pr\u00EAt");
+		duration.setFont(new Font("Dialog", Font.BOLD, 12));
+		duration.setBounds(97, 129, 91, 22);
+		contentPane.add(duration);
+
+		Label loanType = new Label("Type de pr\u00EAt");
+		loanType.setFont(new Font("Dialog", Font.BOLD, 12));
+		loanType.setBounds(97, 196, 80, 22);
+		contentPane.add(loanType);
+
+		JComboBox comboBoxLoanType = new JComboBox();
+		comboBoxLoanType.setBounds(212, 198, 119, 20);
+		contentPane.add(comboBoxLoanType);
+
 		JCheckBox chckbxHorsAssurance = new JCheckBox("Hors assurance");
 		chckbxHorsAssurance.setBounds(6, 391, 119, 23);
 		contentPane.add(chckbxHorsAssurance);
-		
+
 		JCheckBox chckbxHorsFraisDe = new JCheckBox("Hors frais de dossier");
 		chckbxHorsFraisDe.setBounds(6, 421, 119, 23);
 		contentPane.add(chckbxHorsFraisDe);
-		
-		JButton btnSimuler = new JButton("Simuler");
-		/*
-		 * metho to simulate a loan with all arguments
-		 */
-		
-		btnSimuler.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				// add  the update of data in the data base
+
+		JFormattedTextField amountTextField = new JFormattedTextField();
+		amountTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			/*
+			 * Obliged the client to enter only integer
+			 * 
+			 */
+			public void keyTyped(KeyEvent evt) {
+				char c=evt.getKeyChar();
+				if (!(Character.isDigit(c))||(c==KeyEvent.VK_BACK_SPACE)||(c==KeyEvent.VK_DELETE)){
+					evt.consume();
+				}
 			}
 		});
+
+		amountTextField.setBounds(212, 64, 119, 20);
+		contentPane.add(amountTextField);
+
+		System.out.println(amountTextField.getText());
+
+		JFormattedTextField durationTextField = new JFormattedTextField();
+		durationTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				char c=evt.getKeyChar();
+				if (!(Character.isDigit(c))||(c==KeyEvent.VK_BACK_SPACE)||(c==KeyEvent.VK_DELETE)){
+					evt.consume();
+				}
+			}
+		});
+		durationTextField.setBounds(212, 131, 119, 20);
+		contentPane.add(durationTextField);
+
+
+
+
+
+
+		JButton btnSimuler = new JButton("Simuler");
 		btnSimuler.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnSimuler.setBounds(296, 304, 89, 23);
 		contentPane.add(btnSimuler);
-	}
+		/*
+		 * metho to simulate a loan with all arguments
+		 */
 
+		btnSimuler.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				System.out.println(amountTextField.getText() + durationTextField.getText());
+			}
+		});
+
+
+
+	}
 }
