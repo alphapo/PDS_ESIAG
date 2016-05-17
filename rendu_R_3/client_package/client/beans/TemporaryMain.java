@@ -28,16 +28,15 @@ public class TemporaryMain {
 		 */
 		double amount = 10000;
 		double rateByYear = 0.05;
-		double duration = 10;
+		double duration = 24;
 		double insuranceByMonth = 30;
-		Frequency frequency = Frequency.Monthly;
+		Frequency frequency = Frequency.Yearly;
 		int reimbursementType = 3;
 		/*	
 		 *  1 - for in fine repayments
 		 *  2 - for constant amortization 
 		 *  3 - for constant annuity
 		 */  
-		
 		
 		
 		/******************** calculate loan repayments plan *************************/
@@ -59,15 +58,16 @@ public class TemporaryMain {
 		new ShowGraphicBar3D(loanRepaymentPlan.getData(), "Graphique" ,"Restitution graphique de la simulation");
 		
 		/******************** Download PDF version  *********************/
-		Download.pdfVersion(loanRepaymentPlan.getData(), amount, rateByYear, duration, insuranceByMonth);
+		DownloadableDocument downloadableDocument = new DownloadableDocument();
+		downloadableDocument.pdfVersion(loanRepaymentPlan);
 		
-		/******************** print loan repayments plan with physical printer *********************/		
-		try {
-			arrayFrame.print(PrintMode.NORMAL, new MessageFormat("Tableau d''amortissement"), new MessageFormat("Page {0}"));
-		} catch (PrinterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		/******************** print loan repayments plan with physical printer *********************/		
+//		try {
+//			arrayFrame.print(PrintMode.NORMAL, new MessageFormat("Tableau d''amortissement"), new MessageFormat("Page {0}"));
+//		} catch (PrinterException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
 	}

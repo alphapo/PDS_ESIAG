@@ -1,12 +1,12 @@
 package client.beans;
 
 public class TempoData {
-	String numberOfDueDate;
-	double monthly;
-	double interest;
-	double insurance;
-	double remaining;
-	double amortizedCapital;
+	private String numberOfDueDate;
+	private double monthly;
+	private double interest;
+	private double insurance;
+	private double remaining;
+	private double amortizedCapital;
 	
 	public TempoData(String numberOfDueDate, double monthly, double amortizedCapital, double interest, double insurance, double remaining ) {
 		this.numberOfDueDate = numberOfDueDate;

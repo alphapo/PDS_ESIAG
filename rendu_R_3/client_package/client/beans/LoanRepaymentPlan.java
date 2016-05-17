@@ -20,6 +20,7 @@ public class LoanRepaymentPlan {
 	
 	private ArrayList<TempoData> data = new ArrayList<TempoData>();
 
+	
 	public LoanRepaymentPlan(double amount, double rate, double duration, double insurance, int reimbursement_Type, Frequency frequency) {
 		// TODO Auto-generated constructor stub
 		this.capital = amount;
@@ -33,23 +34,25 @@ public class LoanRepaymentPlan {
 
 	public void fillArray(){
 		
+		double localDuration = duration;
+		double localRate = rate;
 		switch(frequency){
-		case Yearly:	duration = duration/12;
+		case Yearly:	localDuration = duration/12;
 						break;
-		case Monthly:	rate = (rate/12);
+		case Monthly:	localRate = (rate/12);
 						break;
 		}
 		
-		for(int currentPeriode = 1; currentPeriode<=duration; currentPeriode++){
+		for(int currentPeriode = 1; currentPeriode<=localDuration; currentPeriode++){
 			
 			/***************** choose the good method of calculate *****************************/
 			switch(reimbursementType){
-				case In_Fine :					methodIn_Fine(currentPeriode);
+				case In_Fine :	methodIn_Fine(currentPeriode, localRate);
+								break;
+				case Constant_Amortization :	methodConstantAmortization(currentPeriode, localRate);
 												break;
-				case Constant_Amortization :	methodConstantAmortization(currentPeriode);
-												break;
-				case Constant_Annuity:			methodConstant_Annuity(currentPeriode);
-												break;
+				case Constant_Annuity:	methodConstant_Annuity(currentPeriode, localRate);
+										break;
 			}
 			
 			data.add(new TempoData(Integer.toString(currentPeriode), monthly, amortizedCapital, interest , this.insurance, remaining));
@@ -59,7 +62,7 @@ public class LoanRepaymentPlan {
 			totalMonthly = totalMonthly + monthly;
 			
 		}
-		double totalInsurance = insurance*duration;
+		double totalInsurance = insurance*localDuration;
 		data.add(new TempoData("Total", keepNoneNumbersAfterComma(totalMonthly), keepNoneNumbersAfterComma(totalCapital), keepNoneNumbersAfterComma(totalInterest), totalInsurance, 0 ));
 	}
 	
@@ -71,20 +74,20 @@ public class LoanRepaymentPlan {
 
 	/************ Reimbursement method ****************/
 
-	private void methodIn_Fine(int currentPeriode){
+	private void methodIn_Fine(int currentPeriode, double rate){
 		interest = keep2numbersAfterComma(capital*rate);
 		amortizedCapital = (duration == currentPeriode)? capital : 0;
 		monthly = keep2numbersAfterComma(amortizedCapital + interest + insurance);
 		remaining =(duration == currentPeriode)? 0: capital;
 	}
-	private void methodConstantAmortization(int currentPeriode){
+	private void methodConstantAmortization(int currentPeriode, double rate){
 		interest = keep2numbersAfterComma(remaining*rate);
 		amortizedCapital = keep2numbersAfterComma(capital/duration);
 		monthly = keep2numbersAfterComma(amortizedCapital + interest + insurance);
 		remaining =keep2numbersAfterComma(remaining-amortizedCapital);
 	}
 	
-	private void methodConstant_Annuity(int currentPeriode){
+	private void methodConstant_Annuity(int currentPeriode, double rate){
 		interest = keep2numbersAfterComma(remaining*rate);
 		amortizedCapital = keep2numbersAfterComma(remaining*rate/(Math.pow((1 + rate),duration-(currentPeriode-1)) - 1));
 		monthly = keep2numbersAfterComma(amortizedCapital + interest + insurance);
@@ -103,6 +106,66 @@ public class LoanRepaymentPlan {
 		
 		default: 	return null;
 		}
+	}
+
+	/*
+	 *  Getters 
+	 */
+	
+	public double getRemaining() {
+		return remaining;
+	}
+
+	public double getMonthly() {
+		return monthly;
+	}
+
+	public double getAmortizedCapital() {
+		return amortizedCapital;
+	}
+
+	public double getInterest() {
+		return interest;
+	}
+
+	public double getRate() {
+		return rate;
+	}
+
+	public double getTotalCapital() {
+		return totalCapital;
+	}
+
+	public double getTotalInterest() {
+		return totalInterest;
+	}
+
+	public double getTotalMonthly() {
+		return totalMonthly;
+	}
+
+	public double getInsurance() {
+		return insurance;
+	}
+
+	public double getDuration() {
+		return duration;
+	}
+
+	public double getCapital() {
+		return capital;
+	}
+
+	public ReimbursementType getReimbursementType() {
+		return reimbursementType;
+	}
+
+	public Frequency getFrequency() {
+		return frequency;
+	}
+
+	public void setData(ArrayList<TempoData> data) {
+		this.data = data;
 	}
 
 	private double keep2numbersAfterComma(double number){
