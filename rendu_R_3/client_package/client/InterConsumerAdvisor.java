@@ -1,9 +1,9 @@
 package windowBuilderTest;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
@@ -13,6 +13,7 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
+import java.io.ObjectInputStream.GetField;
 import java.awt.event.ActionEvent;
 
 public class InterConsumerAdvisor extends JFrame {
@@ -28,6 +29,7 @@ public class InterConsumerAdvisor extends JFrame {
 				try {
 					InterConsumerAdvisor frame = new InterConsumerAdvisor();
 					frame.setVisible(true);
+			
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -63,6 +65,9 @@ public class InterConsumerAdvisor extends JFrame {
 		TextField textFieldAmount = new TextField();
 		textFieldAmount.setBounds(218, 44, 89, 22);
 		contentPane.add(textFieldAmount);
+		/*
+		 * test print the amount in the console
+		 */
 		
 		Label montantPret = new Label("Montant");
 		montantPret.setFont(new Font("Dialog", Font.BOLD, 12));
