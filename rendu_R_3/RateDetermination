@@ -57,9 +57,9 @@ public class RateDetermination {
 		//if	
 	}
 		
-	public static void main(String[] args) {
-		RateDetermination d1 =new RateDetermination(5, 55, false, true, 2);
-		System.out.println(d1.changeRate());
+//	public static void main(String[] args) {
+//		RateDetermination d1 =new RateDetermination(5, 55, false, true, 2);
+//		System.out.println(d1.changeRate());
 	}
  }	
 	
