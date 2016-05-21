@@ -9,20 +9,19 @@ import javax.swing.event.*;
 import javax.swing.text.*;
 
 import java.beans.PropertyChangeListener;
+import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.beans.PropertyChangeEvent;
 
 import java.text.*;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Label;
 import java.awt.Font;
 import java.awt.TextField;
-import javax.swing.JComboBox;
-import javax.swing.JCheckBox;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 import java.awt.event.ActionEvent;
@@ -30,27 +29,18 @@ import java.awt.event.ActionEvent;
 public class InterClient extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InterClient frame = new InterClient();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	 Connection connection;
+	 Statement statement;
+	 ResultSet result;
 
 	/**
 	 * Create the frame.
 	 */
 	public InterClient() {
+
+
+
+
 		setTitle("Interface Client ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 504, 490);
@@ -88,6 +78,34 @@ public class InterClient extends JFrame {
 		JComboBox comboBoxLoanType = new JComboBox();
 		comboBoxLoanType.setBounds(212, 198, 119, 20);
 		contentPane.add(comboBoxLoanType);
+
+		try{
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/pds_ing1","root","");
+			statement=connection.createStatement();
+			result=statement.executeQuery("select * from agence");
+
+			while( result.next()){
+				comboBoxLoanType.addItem(result.getString("ville"));
+			}
+
+
+		}
+		catch (Exception e){
+			JOptionPane.showMessageDialog(null, e);
+			System.out.println(e);
+		}
+		finally{
+
+			try{
+				statement.close();
+				result.close();
+				connection.close();
+
+			}catch(Exception e ){
+				JOptionPane.showMessageDialog(null, "Erreur");
+
+			}
+		}
 
 		JCheckBox chckbxHorsAssurance = new JCheckBox("Hors assurance");
 		chckbxHorsAssurance.setBounds(6, 391, 119, 23);
@@ -133,8 +151,6 @@ public class InterClient extends JFrame {
 
 
 
-
-
 		JButton btnSimuler = new JButton("Simuler");
 		btnSimuler.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnSimuler.setBounds(296, 304, 89, 23);
@@ -146,11 +162,29 @@ public class InterClient extends JFrame {
 		btnSimuler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				System.out.println(amountTextField.getText() + durationTextField.getText());
+				// methode pour envoyer le JSon au serveur...
 			}
 		});
 
 
 
+
+	}
+
+	/**
+	 * Launch the application.
+	 */
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					InterClient frame = new InterClient();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }
