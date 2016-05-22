@@ -2,7 +2,7 @@ package client.beans;
 
 import java.util.ArrayList;
 
-public class LoanRepaymentPlan {
+public class LoanRepaymentsPlan {
 
 	private double remaining;
 	private double monthly ;
@@ -21,7 +21,7 @@ public class LoanRepaymentPlan {
 	private ArrayList<TempoData> data = new ArrayList<TempoData>();
 
 	
-	public LoanRepaymentPlan(double amount, double rate, double duration, double insurance, int reimbursement_Type, Frequency frequency) {
+	public LoanRepaymentsPlan(double amount, double rate, double duration, double insurance, int reimbursement_Type, Frequency frequency) {
 		// TODO Auto-generated constructor stub
 		this.capital = amount;
 		this.insurance = insurance;

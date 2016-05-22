@@ -4,16 +4,9 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.swing.JOptionPane;
-
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -21,39 +14,28 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.FontSelector;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 
-public class DownloadableDocument {
-	private String ROOT = "Derniere_Simulation";
+public class Summary {
+	private String downloadDirectory;
 	private String FILE;
-	private String currentPath;
+	private String relativePath;
+	private LoanRepaymentsPlan loanRepaymentsPlan;
 
-	public DownloadableDocument() {
-		try {
-			currentPath = new java.io.File( "." ).getCanonicalPath();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		do {
-			FILE = JOptionPane.showInputDialog(null, "Donnez un nom au recapitulatif que vous souhaitez télécharger s'il vous plaît");
-		}while (FILE.isEmpty());
+	public Summary( LoanRepaymentsPlan loanRepaymentsPlan ) {
+		this.loanRepaymentsPlan = loanRepaymentsPlan;
+		downloadDirectory = System.getProperty("user.home")+"/Downloads";
+		FILE = "recapitulatif";
+		relativePath = downloadDirectory+"/"+FILE;		
 	}
 
-	public  void pdfVersion(LoanRepaymentPlan loanRepaymentsPlan) {
+	public void downloadPdfVersion() {
 		try {
 
 			if(! FILE.endsWith(".pdf") )
-				FILE = FILE+".pdf";
-
-			new File(ROOT).mkdirs();
-
-			cleanDirectory();
-
-			String relativePath = ROOT+"\\"+FILE;
+				relativePath = relativePath+".pdf";
 
 			Document document = new Document();
 			PdfWriter.getInstance(document, new FileOutputStream(relativePath));
@@ -94,7 +76,6 @@ public class DownloadableDocument {
 			document.add(paragraph2);
 			document.add(lineBreak);
 
-
 			PdfPTable table = new PdfPTable(6); 
 			table.addCell("Numéro d'échéance");
 			table.addCell("Mensualité");
@@ -114,18 +95,26 @@ public class DownloadableDocument {
 
 			document.add(table);
 			document.close();
-			
-			
-//			String forInformation = "le fichier téléchargé \'"+FILE+"\' se trouve à l'emplacement suivant \'"+currentPath+"\'"+ROOT;
-//			JOptionPane.showMessageDialog(null, forInformation , "Information", 1);
 
-			// and open file for user 
+			// and open download Directory and file for user 
+			Desktop.getDesktop().open(new File(downloadDirectory));
 			Desktop.getDesktop().open(new File(relativePath));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	public void printWithDevice() {
+		try {
+			Desktop.getDesktop().print(new File(relativePath));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	private String frequencyToString(Frequency Frequency){
 		switch(Frequency){
 		case Yearly:	 return "annuel";
@@ -133,18 +122,4 @@ public class DownloadableDocument {
 		default:	return null;
 		}
 	}
-	private void cleanDirectory(){
-		Path path = Paths.get(ROOT);
-		try {
-			Files.newDirectoryStream(path).forEach( file -> {
-				try { Files.delete( file ); }
-				catch ( IOException e ) { throw new UncheckedIOException(e); }
-			} );
-		}
-		catch ( IOException e ) {
-			e.printStackTrace();
-		}
-	}
-
-
 }

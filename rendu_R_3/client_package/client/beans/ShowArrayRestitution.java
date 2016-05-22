@@ -1,13 +1,10 @@
 package client.beans;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.table.AbstractTableModel;
 
 public class ShowArrayRestitution extends AbstractTableModel {
 	
-	private  ArrayList<TempoData> data = new ArrayList<TempoData>();
+	private  LoanRepaymentsPlan loanRepaymentsPlan;
 
 	private final String[] entetes = {"Numéro", "Mensualité", "Capital Amorti","Interets","Assurance","Capital restant dû"};
 
@@ -17,12 +14,12 @@ public class ShowArrayRestitution extends AbstractTableModel {
 	 * 
 	 * 
 	 */
-	public ShowArrayRestitution(ArrayList<TempoData> data) {
-		this.data = data;
+	public ShowArrayRestitution(final LoanRepaymentsPlan loanRepaymentPlan) {
+		this.loanRepaymentsPlan = loanRepaymentPlan;
 	}
 
 	public int getRowCount() {
-		return data.size();
+		return loanRepaymentsPlan.getData().size();
 	}
 
 	public int getColumnCount() {
@@ -36,17 +33,17 @@ public class ShowArrayRestitution extends AbstractTableModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		 switch(columnIndex){
          case 0:
-             return data.get(rowIndex).getNumberOfDueDate();
+             return loanRepaymentsPlan.getData().get(rowIndex).getNumberOfDueDate();
          case 1:
-             return data.get(rowIndex).getMonthly();
+             return loanRepaymentsPlan.getData().get(rowIndex).getMonthly();
          case 2:
-             return data.get(rowIndex).getAmortizedCapital();
+             return loanRepaymentsPlan.getData().get(rowIndex).getAmortizedCapital();
          case 3:
-             return data.get(rowIndex).getInterest();
+             return loanRepaymentsPlan.getData().get(rowIndex).getInterest();
          case 4:
-             return data.get(rowIndex).getInsurance();
+             return loanRepaymentsPlan.getData().get(rowIndex).getInsurance();
          case 5:
-             return data.get(rowIndex).getRemaining();
+             return loanRepaymentsPlan.getData().get(rowIndex).getRemaining();
          default:
              return null; 
      }
