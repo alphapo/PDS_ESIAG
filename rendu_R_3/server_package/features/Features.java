@@ -70,6 +70,18 @@ public class Features {
 		}
 	}
 	
+	public static void addSimulation(Simulation simulation, Connection connection){
+		try {
+			
+			Statement state = connection.createStatement();
+			//Data insertion in the simulation table
+			state.executeQuery("INSERT INTO simulation values()");
+			
+		} catch (SQLException ex){
+			ex.printStackTrace();
+		}
+	}
+	
 	public static Hashtable<Integer, String> getClient(Connection connection) {
 	    Hashtable<Integer, String> htConsumer = new Hashtable<Integer, String>();
 
@@ -256,7 +268,7 @@ public class Features {
 			rs.next();
 			nb = rs.getFloat(1);
 			
-			System.out.println("Affichae durée moyenne pret par type de pret : "+nb);
+			System.out.println("Affichae durÃ©e moyenne pret par type de pret : "+nb);
 
 		}catch ( SQLException ex){
 			ex.printStackTrace();
