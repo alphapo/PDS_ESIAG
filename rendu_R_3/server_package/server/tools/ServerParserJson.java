@@ -1,13 +1,15 @@
 package server.tools;
 
+import javax.json.Json;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import client.beans.ClientSimulation;
 import server.beans.Authentification;
 import server.beans.Client;
+import server.beans.Simulation;
 
-
-//Read JSon
 public class ServerParserJson {
 	static public Authentification getAthentification(String jsonContent){
 		
@@ -20,6 +22,7 @@ public class ServerParserJson {
 			log = jObject.getString("login");
 			pwd = jObject.getString("password");
 		} catch (JSONException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		authentification.setLogin(log);
@@ -33,6 +36,7 @@ public class ServerParserJson {
 			jObject = new JSONObject(jsonContent);
 			request = jObject.getString("request");
 		} catch (JSONException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return request;
@@ -47,9 +51,42 @@ public class ServerParserJson {
 			client.setAddress(jObject.getString("address"));
 			
 		} catch (JSONException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return client;
+	}
+	
+	// method to recover data entered in the interface
+	
+	static public ClientSimulation getClientSimulationData(String jsonContent){
+		ClientSimulation clientSimulation = new ClientSimulation();
+		JSONObject jObject = null;
+		try {
+			jObject = new JSONObject(jsonContent);
+			/*
+			 * à Corriger une fois les methodes implémentés.
+			clientSimulation.setUser(jObject.getString("id_user"));
+			ClientSimulation.setSimulationDate(jObject.getString("simulationDate"));
+			ClientSimulation.setStatus(jObject.getString("status"));
+			*/
+			
+			clientSimulation.setDuration(jObject.getInt("status"));
+			clientSimulation.setAmount(jObject.getInt("amount"));
+			
+			/*
+			clientSimulation.setInterest(jObject.getInt("amount"));
+			clientSimulation.setLoanType(jObject.getInt("interest"));
+			*/
+			clientSimulation.setFreqency(jObject.getString("frequency"));
+			
+			
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return clientSimulation;
 	}
 	
 }
