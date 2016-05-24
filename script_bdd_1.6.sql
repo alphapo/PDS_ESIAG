@@ -157,10 +157,10 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `test_pds`.`LoanType` (
   `id_loanType` INT NOT NULL AUTO_INCREMENT,
-  `id_Insurance` INT NULL,
+  `id_Insurance` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `id_refund` INT NOT NULL,
-  `rate` FLOAT NULL,
+  `rate` FLOAT NOT NULL,
   PRIMARY KEY (`id_loanType`, `id_Insurance`, `id_refund`),
   INDEX `fk_LoanType_Insurance1_idx` (`id_Insurance` ASC),
   INDEX `fk_LoanType_refund1_idx` (`id_refund` ASC),
