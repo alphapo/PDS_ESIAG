@@ -1,10 +1,11 @@
-package determinationtaux;
+package client;
 
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.SQLException;
-//
-//import java.sql.Statement;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import java.sql.Statement;
 
 public class RateDetermination {
 
@@ -17,14 +18,14 @@ public class RateDetermination {
 	//double Conso;
 	//double Immo;
 	double newRate = 0;
-	int loanType=0;
+	int typePret=0;
 	
-	public RateDetermination(int duration, int age, boolean health, boolean loanhist, int loanType) {
+	public RateDetermination(int duration, int age, boolean health, boolean loanhist, int typePret) {
 		this.duration = duration;
 		this.age = age;
 		this.health = health;
 		this.loanhist = loanhist;
-		this.loanType=loanType;
+		this.typePret=typePret;
 		//Fixedrate = fixedrate;
 	//	Conso = conso;
 	//	Immo = immo;
@@ -46,7 +47,7 @@ public class RateDetermination {
 		//	System.out.println("2");
 		//}
 		
-		double calcrate=loanType;
+		double calcrate=typePret;
 		if (duration <= 10 && duration >= 2){
 			calcrate -=0.025;
 			System.out.println("3");
@@ -124,7 +125,7 @@ public class RateDetermination {
 //		}
 //	
 //	}
-//	
+	
 }
 	
 
