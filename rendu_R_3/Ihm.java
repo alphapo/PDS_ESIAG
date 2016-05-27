@@ -247,7 +247,7 @@ public class Ihm implements ActionListener{
 		RateDetermination d1 =new RateDetermination(Integer.parseInt(textField_1.getText()), Integer.parseInt(textField_2.getText()), health, loanhist, typePret);
 		
 		double total = d1.changeRate();
-		lblNewLabel.setText(String.valueOf(total));
+		lblNewLabel.setText(String.valueOf(total));  // Dsiplays the new rate
 		
 		try {
 			System.out.println("rate :"+total+"-----"+typePret);
