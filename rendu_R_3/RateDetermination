@@ -82,7 +82,7 @@ public class RateDetermination {
 			System.out.println("10");
 		}
 		
-		return calcrate;
+		return calcrate; // This is the new rate
 		//if	
 	}
 		
