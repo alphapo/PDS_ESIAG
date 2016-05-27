@@ -298,41 +298,41 @@ public class IhmIndicator extends JFrame{
 
 
 	    addItem(pLoan, new JLabel("Durée moyenne des prets : "),3,0,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
-	    addItem(pLoan, avgDurationLoan,3,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pLoan, new JLabel("-"),3,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, dateAvgLoanBox,3,2,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, loanTypeAvgLoanBox,3,3,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, avgDurationLoanCrit,3,4,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 
 
 	    addItem(pLoan, new JLabel("Montant moyen des prets : "),4,0,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
-	    addItem(pLoan, avgAmountLoan,4,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pLoan, new JLabel("-"),4,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, dateAvgAmountLoanBox,4,2,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, loanTypeAvgAmountLoanBox,4,3,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, avgAmountLoanCrit,4,4,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 
 	    addItem(pLoan, new JLabel("Intérêts precues par la banque : "),5,0,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
-	    addItem(pLoan, interest,5,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pLoan, new JLabel("-"),5,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, dateInterestBox,5,2,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, loanTypeInterestBox,5,3,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, interestCrit,5,4,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 
 	    
 	    addItem(pLoan, new JLabel("Taux max: "),6,0,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
-	    addItem(pLoan, maxRate,6,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pLoan, new JLabel("-"),6,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, dateMaxRateBox,6,2,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, loanTypeMaxRateBox,6,3,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, maxRateCrit,6,4,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 
 	    
 	    addItem(pLoan, new JLabel("Taux min : "),7,0,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
-	    addItem(pLoan, minRate,7,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pLoan, new JLabel("-"),7,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, dateMinRateBox,7,2,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, loanTypeMinRateBox,7,3,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, minRateCrit,7,4,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 
 	    
 	    addItem(pLoan, new JLabel("Taux moyens : "),8,0,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
-	    addItem(pLoan, avgRate,8,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pLoan, new JLabel("-"),8,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, dateAvgRateBox,8,2,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, loanTypeAvgRateBox,8,3,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pLoan, avgRateCrit,8,4,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
@@ -484,7 +484,7 @@ public class IhmIndicator extends JFrame{
 	    //--------------------------------------------------------------------------
 
 
-	    JLabel title = new JLabel("----------------- SIMULATION -----------------", SwingConstants.CENTER);
+	    JLabel title = new JLabel("----------------- SIMULATION -----------------");
 
 	    nbSimOk = new JButton("Ok");
 	    consumerBox = new JComboBox();
@@ -505,7 +505,7 @@ public class IhmIndicator extends JFrame{
 	    //		timeBox = returnPeriodOfTimeBox();
 
 
-	    addItem(pSim, title,0, 0,5,1, gc, GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pSim, title,0, 2,5,1, gc, GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 
 	    gc.insets = new Insets(5,5,5,5);
 	    addItem(pSim, new JLabel("Indicateur"),1, 0,1,1, gc, GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL );
@@ -521,22 +521,29 @@ public class IhmIndicator extends JFrame{
 	    addItem(pSim, nbSim,2,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pSim, dateNbSimBox,2,2,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pSim, loanTypeNbSimBox,2,3,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pSim, new JLabel("-"),2,4,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pSim, nbSimCrit,2,5,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 
 	    
 	    addItem(pSim, new JLabel("Nombre d'utilisateurs : "),3,0,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.NONE);
 	    addItem(pSim, nbUser,3,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pSim, new JLabel("-"),3,2,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pSim, new JLabel("-"),3,3,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pSim, genderUserBox,3,4,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pSim, nbUserCrit,3,5,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 
 	    
 	    addItem(pSim, new JLabel("Nombre de clients : "),4,0,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.NONE);
 	    addItem(pSim, nbCons,4,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pSim, new JLabel("-"),4,2,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pSim, new JLabel("-"),4,3,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pSim, genderConsBox,4,4,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pSim, nbConsCrit,4,5,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    
 	    addItem(pSim, new JLabel("Age moyen des clients : "),5,0,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.NONE);
 	    addItem(pSim, avgAge,5,1,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pSim, new JLabel("-"),5,2,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
+	    addItem(pSim, new JLabel("-"),5,3,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pSim, genderAvgNbAgeBox,5,4,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 	    addItem(pSim, avgAgeCrit,5,5,1,1,gc,GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 
@@ -563,7 +570,7 @@ public class IhmIndicator extends JFrame{
 		GridBagConstraints gc = new GridBagConstraints();
 
 
-		JLabel title = new JLabel("----------------- Informations complémentaires -----------------", SwingConstants.CENTER);
+		JLabel title = new JLabel("*********************** Informations complémentaires ***********************", SwingConstants.CENTER);
 		date1 = new JTextField();
 		date2 = new JTextField();
 
@@ -766,7 +773,7 @@ public class IhmIndicator extends JFrame{
 			return false;
 		}
 		else{
-			int res2 = JOptionPane.showOptionDialog(null, "Format de date incorrect ! \n AAAA-MM-JJ", "Ok", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+			int res2 = JOptionPane.showOptionDialog(null, "Format de date incorrect ! \n AAAA-MM-JJ", "Erreur date", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
 			return false;
 		}
@@ -864,8 +871,6 @@ public class IhmIndicator extends JFrame{
 //
 //	    		e.printStackTrace();
 //	    	}
-
-
 //	    }
 
 }
