@@ -20,8 +20,8 @@ public class InformationImpl extends UnicastRemoteObject implements Informations
     return "bonjour";
   }
   
-	public Hashtable<Integer, String> getHashCustomers(){
-		return HandleClient.hashCustomers();
+	public Hashtable<Integer, String> getHashConsumer(){
+		return HandleClient.hashConsumer();
 	}
 	
 	public Hashtable<Integer, String> getHashLoanType(){
@@ -56,6 +56,22 @@ public class InformationImpl extends UnicastRemoteObject implements Informations
 		return HandleClient.nbInterest(date, loanTypeId);
 	}
 	
+	public float maxRate(boolean date, boolean loanTypeId){
+		return HandleClient.maxRate(date, loanTypeId);
+	}
+
+	public float minRate(boolean date, boolean loanTypeId){
+		return HandleClient.minRate(date, loanTypeId);
+	}
+	
+	public float avgRate(boolean date, boolean loanTypeId){
+		return HandleClient.avgRate(date, loanTypeId);
+	}	
+	
+	public float avgAgeConsumer(boolean date, boolean loanTypeId){
+		return HandleClient.avgAgeConsumer(date, loanTypeId);
+	}	
+	
 	//Save the date to use it in Features
 	public void saveDate(String d1, String d2){
 		HandleClient.setDate1(d1);
@@ -66,4 +82,30 @@ public class InformationImpl extends UnicastRemoteObject implements Informations
 	public void saveLoanTypeId(int id){
 		HandleClient.setLoanTypeId(id);
 	}
+	
+	//Save gender to use it in Features	
+	public void saveGenderId(int id){
+		HandleClient.setGenderId(id);
+	}
+	
+	public void saveAgency(String user){
+		HandleClient.setAgency(user);
+	}
+	
+	public String getAgency(){
+		return HandleClient.getAgency();
+	}
+	public void sendRate(double rate, int idLoanType){
+		HandleClient.sendRate(rate, idLoanType);
+	}
+
+	public int nbUsers(boolean date, boolean gender) throws RemoteException {
+		return HandleClient.nbUser(date, gender);
+	}
+
+	public int nbConsumer(boolean date, boolean gender) throws RemoteException {		
+		return HandleClient.nbConsumer(date, gender);
+	}
+
+
 }

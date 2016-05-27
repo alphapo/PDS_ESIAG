@@ -4,6 +4,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Hashtable;
 import server.HandleClient;
 import server.beans.Authentification;
@@ -27,19 +33,6 @@ public class Features {
 //			ex.printStackTrace();
 //		}
 //	}
-
-	public static void addSimulation(Simulation simulation, Connection connection){
-		try {
-			
-			Statement state = connection.createStatement();
-			//Data insertion in the simulation table
-			state.executeQuery("INSERT INTO simulation values()");
-			
-		} catch (SQLException ex){
-			ex.printStackTrace();
-		}
-	}
-	
 	
 	public static String getDateSup() {
 		return dateSup;
@@ -178,18 +171,19 @@ public class Features {
 	
 	//Return the number of simulation
 	//Return the number of simulation
-	public static int nbConsumer(Connection connection, boolean date, boolean loanTypeId){
+	public static int nbConsumer(Connection connection, boolean date, boolean gender){
 		int nb=0;
-		String s = HandleClient.getDate();
-		int id = HandleClient.getLoanType();
-
 		ResultSet rs;
 		String sql = null;
 		try {
 			Statement state = connection.createStatement();
-			sql = "Select count(*) from consumer where id_Agency=\""+Features.id_agency+"\"";
-			System.out.println(sql);
 			
+			if(gender==true)
+				sql = "Select count(*) from consumer where id_Agency=\""+Features.id_agency+"\" and gender=\""+HandleClient.getGender()+"\"";
+			else
+				sql = "Select count(*) from consumer where id_Agency=\""+Features.id_agency+"\"";
+			
+			System.out.println(sql);
 			rs = state.executeQuery(sql);
 			
 			while(rs.next()){
@@ -202,7 +196,7 @@ public class Features {
 	}
 	
 	//Return the number of simulation
-	public static int nbUser(Connection connection, boolean date, boolean loanTypeId){
+	public static int nbUser(Connection connection, boolean date, boolean gender){
 		int nb=0;
 		String s = HandleClient.getDate();
 		int id = HandleClient.getLoanType();
@@ -211,7 +205,12 @@ public class Features {
 		String sql = null;
 		try {
 			Statement state = connection.createStatement();
-			sql = "Select count(*) from user u, consumer c where u.id_consumer=c.id_consumer and id_Agency=\""+Features.id_agency+"\"";
+			if(gender==true){
+				sql = "Select count(*) from user u, consumer c where u.id_consumer=c.id_consumer and id_Agency=\""+Features.id_agency+"\" and gender=\""+HandleClient.getGender()+"\"";
+			}
+			else
+				sql = "Select count(*) from user u, consumer c where u.id_consumer=c.id_consumer and id_Agency=\""+Features.id_agency+"\"";
+			
 			System.out.println(sql);
 			
 			rs = state.executeQuery(sql);
@@ -434,17 +433,6 @@ public class Features {
 			ex.printStackTrace();
 		}
 		return nb;
-
-
-
-		//		while(rs.next()){
-		//			duration = (rs.getInt("duration"))*12;
-//			percent = rs.getFloat("interestRate")*(0.01f);
-//			interest = percent*((float)rs.getInt("amount"));
-//			finalInterest = (float)(interest * duration);
-//			nb=nb+finalInterest;
-//		}
-		
 	
 	}
 	
@@ -553,5 +541,68 @@ public class Features {
 			ex.printStackTrace();
 		}
 	}
+	
+	
+	//Returns the average duration of loans group by loantype
+	public static float avgAgeConsumer(Connection connection, boolean gender){
+		ResultSet rs;
+		String sql;
+		ArrayList<String> dateOfBirth = new ArrayList();
+		try {
+			Statement state = connection.createStatement();
+			
+			if(gender=true)
+				sql = "Select * from Consumer where gender=\""+HandleClient.getGender()+"\"";
+			else
+				sql = "Select * from Consumer";
+
+			rs = state.executeQuery(sql);
+			
+			while(rs.next()){
+				dateOfBirth.add(rs.getString("dateOfBirth"));
+			}
+			System.out.println("Age moyen : "+Features.calculateAge(dateOfBirth));
+		}catch ( SQLException ex){
+			ex.printStackTrace();
+		}
+		
+		return Features.calculateAge(dateOfBirth);
+
+	}
+	
+	
+	public static float calculateAge(ArrayList<String> list){
+		int it=0;
+		int ageTemp=0;
+		Date d;
+		float avgAge = 0;
+		DateFormat format= new SimpleDateFormat("yyyy-MM-dd");
+		ArrayList<Integer> ageList = new ArrayList();
+		while(it<list.size()){
+			Date birthDateInit;
+			try {
+				birthDateInit = (Date)format.parse(list.get(it));
+
+			Calendar birthDate = Calendar.getInstance();
+			Calendar CurrentDate=Calendar.getInstance();
+			
+			birthDate.setTime(birthDateInit);
+			
+			CurrentDate.setTime(new Date());
+			ageTemp= CurrentDate.get(Calendar.YEAR) - birthDate.get(Calendar.YEAR);
+			ageList.add(ageTemp);
+			it++;
+			
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+			for(int i = 0 ; i<ageList.size() ; i++){
+				avgAge=avgAge+ageList.get(i);
+			}
+			System.out.println(avgAge);
+			return (avgAge/ageList.size());	
+	}
+	
 	
 }

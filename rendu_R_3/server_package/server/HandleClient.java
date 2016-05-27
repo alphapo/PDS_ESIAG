@@ -17,7 +17,8 @@ import server.tools.ServerParserJson;
 
 public class HandleClient extends Thread {
 	private static String date1, date2;
-	private static int loanTypeId;
+	private static int loanTypeId, genderId;
+	private static String user;
 	private PrintWriter out;
 	private BufferedReader in;
 	final private Socket clientSocket ;
@@ -59,6 +60,37 @@ public class HandleClient extends Thread {
 		}
 	}
 	
+	private String getContentJson(final BufferedReader in) throws IOException{
+		return  in.readLine(); 
+	}
+	private String getRequest(String jsonContent){
+		return ServerParserJson.getRequest(jsonContent);
+	}
+	public synchronized void finish() {
+		if (!stop) {
+			stop = true;
+			try {
+				System.out.println("client "+clientSocket.getInetAddress()+" is disconnected");
+				clientSocket.close();
+				connectionPool.returnConnectionToPool(connection);
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
+	//---------------------------------------------------------
+	//					Indicators methods
+	//---------------------------------------------------------
+	
+	public static void setAgency(String user) {
+		HandleClient.user = user;
+		HandleClient.setServerLogin();
+		System.out.println("Le login est : ---->"+getLoginUser());
+	}
+	
 	public static String getDate1() {
 		return date1;
 	}
@@ -83,7 +115,15 @@ public class HandleClient extends Thread {
 		HandleClient.loanTypeId = loanTypeId;
 	}
 	
-	public static Hashtable<Integer, String> hashCustomers(){
+	public static int getGenderId() {
+		return genderId;
+	}
+
+	public static void setGenderId(int genderId) {
+		HandleClient.genderId= genderId;
+	}
+	
+	public static Hashtable<Integer, String> hashConsumer(){
 		return Features.getClient(connection);
 	}
 	
@@ -103,12 +143,36 @@ public class HandleClient extends Thread {
 		return Features.nbSimulation(connection, date, loanTypeId);
 	}
 	
+	public static int nbConsumer(boolean date, boolean gender){
+		return Features.nbConsumer(connection, date, gender);
+	}
+	
+	public static int nbUser(boolean date, boolean gender){
+		return Features.nbUser(connection, date, gender);
+	}
+	
 	public static int nbLoan(boolean date, boolean loanTypeId){
 		return Features.nbLoan(connection, date, loanTypeId);
 	}
 	
 	public static float nbInterest(boolean date, boolean loanTypeId){
 		return Features.nbInterest(connection, date, loanTypeId);
+	}
+	
+	public static float maxRate(boolean date, boolean loanTypeId){
+		return Features.maxRate(connection, date, loanTypeId);
+	}
+	
+	public static float minRate(boolean date, boolean loanTypeId){
+		return Features.minRate(connection, date, loanTypeId);
+	}
+	
+	public static float avgRate(boolean date, boolean loanTypeId){
+		return Features.avgRate(connection, date, loanTypeId);
+	}
+	
+	public static float avgAgeConsumer(boolean date, boolean loanTypeId){
+		return Features.avgAgeConsumer(connection, loanTypeId);
 	}
 	
 	public static float avgDurationLoan(boolean date, boolean loanTypeId){
@@ -131,22 +195,32 @@ public class HandleClient extends Thread {
 		return id;
 	}
 	
-	private String getContentJson(final BufferedReader in) throws IOException{
-		return  in.readLine(); 
+	public static String getGender(){
+		int id = HandleClient.getGenderId();
+		String gender;
+		if(id==0)
+			gender="F";
+		else
+			gender="M";
+		System.out.println(gender);
+		return gender;
 	}
-	private String getRequest(String jsonContent){
-		return ServerParserJson.getRequest(jsonContent);
+	
+	public static void setServerLogin(){
+		Features.setIdAgency(connection, HandleClient.user);
 	}
-	public synchronized void finish() {
-		if (!stop) {
-			stop = true;
-			try {
-				System.out.println("client "+clientSocket.getInetAddress()+" is disconnected");
-				clientSocket.close();
-				connectionPool.returnConnectionToPool(connection);
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		}
+
+	public static String getLoginUser(){
+		return HandleClient.user;
+	}
+
+	public static String getAgency(){
+		return Features.getAgency(connection);
+	}
+	
+	public static void sendRate(double rate, int idLoanType){
+		System.out.println(rate+" et "+idLoanType);
+		Features.sendRate(connection, rate, idLoanType);
+
 	}
 }
