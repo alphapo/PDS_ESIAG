@@ -1,4 +1,4 @@
-package tools;
+package server.tools;
 
 import java.io.IOException;
 import java.io.InputStream;

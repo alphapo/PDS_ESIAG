@@ -4,13 +4,12 @@ package server.beans;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.json.JsonValue;
+//import javax.json.JsonValue;
 
 public class Duration {
 	HashMap<Double,Double> mapDurationMonth= new HashMap<>();
 	
 	public Duration() {
-		// TODO Auto-generated constructor stub
 	}
 	public void add(double year, double month){
 		mapDurationMonth.put(year, month);
