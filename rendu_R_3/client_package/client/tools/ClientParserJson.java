@@ -1,10 +1,13 @@
-package client.tools;
+package tools;
 
 import java.util.Hashtable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import beans.ClientSimulation;
+import beans.Duration;
 
 
 public class ClientParserJson {
@@ -22,34 +25,5 @@ public class ClientParserJson {
 		return result;
 	}
 	
-	
-//	public static int resultQueryAccessSimulation(String jsonContent){
-//		JSONObject jObject ;
-//		int nb = 0;;
-//		try {
-//			jObject = new JSONObject(jsonContent);
-//			nb = jObject.getInt("result");
-//		} catch (JSONException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		// Retrun a number
-//		return nb;
-//	}
-//	
-//	public static Hashtable resultQueryAccessConsumer(String jsonContent){
-//		JSONObject jObject ;
-//		JSONObject ht = new JSONObject();
-//		try {
-//			jObject = new JSONObject(jsonContent);
-//			ht = jObject.getJSONObject("result");
-//		} catch (JSONException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		// Retrun a number
-//		Hashtable ht1 = new Hashtable();
-//		ht1.put(1, ht);
-//		return ht1;
-//	}
+		
 }
