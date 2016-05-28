@@ -10,20 +10,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Hashtable;
-
-import javax.swing.JComboBox;
-import javax.swing.table.DefaultTableModel;
-
-import java.sql.PreparedStatement;
-
 import server.HandleClient;
-import server.beans.Authentification;
-import server.beans.Client;
-import server.beans.*;;
-//import server.beans.ClientSimulation;
-//import server.beans.Duration;
+import beans.Authentification;
+import beans.Client;
+import beans.ClientSimulation;
+import beans.Duration;
 
 public class Features {
 	static String dateInf;
@@ -88,6 +80,7 @@ public class Features {
 		}
 	}
 	
+<<<<<<< HEAD
 //	public static void addSimulation(Simulation simulation, Connection connection){
 //		try {
 //			
@@ -100,7 +93,8 @@ public class Features {
 //		}
 //	}
 	
-
+=======
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 	public static Hashtable<Integer, String> getClient(Connection connection) {
 	    Hashtable<Integer, String> htConsumer = new Hashtable<Integer, String>();
 
@@ -514,6 +508,7 @@ public class Features {
 		return nb;
 	}
 	
+<<<<<<< HEAD
 	public static boolean addSimulation(ClientSimulation clientSimulation, Connection connection){
 		boolean status = true;
 		try {
@@ -548,7 +543,7 @@ public class Features {
 			ex.printStackTrace();
 		}
 		return duration;
-	}
+=======
 	public static float avgRate(Connection connection, boolean date, boolean loanTypeId){
 		float nb=0;
 		String s = HandleClient.getDate();
@@ -581,6 +576,7 @@ public class Features {
 		number = Math.round(number * Math.pow(100,1)) / Math.pow(100,1);
 		//keep 2 numbers after comma
 		return (float)((int)(number*100))/100;
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 	}
 	
 	

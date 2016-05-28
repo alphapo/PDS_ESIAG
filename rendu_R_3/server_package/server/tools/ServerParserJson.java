@@ -1,14 +1,14 @@
-package server.tools;
+package tools;
 
 import javax.json.Json;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import server.beans.ClientSimulation;
-import server.beans.Duration;
-import server.beans.Authentification;
-import server.beans.Client;
+import beans.ClientSimulation;
+import beans.Duration;
+import beans.Authentification;
+import beans.Client;
 //import beans.Simulation;
 
 public class ServerParserJson {

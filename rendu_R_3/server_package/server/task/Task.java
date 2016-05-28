@@ -1,13 +1,13 @@
-package server.task;
+package task;
 
 import java.sql.Connection;
-import server.beans.ClientSimulation;
-import server.beans.Duration;
+import beans.ClientSimulation;
+import beans.Duration;
 import features.Features;
-import server.beans.Authentification;
-import server.beans.Client;
-import server.tools.ServerFactoryJson;
-import server.tools.ServerParserJson;
+import beans.Authentification;
+import beans.Client;
+import tools.ServerFactoryJson;
+import tools.ServerParserJson;
 
 public class Task {
 	static String result = null;
@@ -24,6 +24,7 @@ public class Task {
 	}
 
 	public static String addClientLaunched(String jsonContent, Connection connection) {
+		// TODO Auto-generated method stub
 		Client client = ServerParserJson.getClient(jsonContent);
 		Features.addClient(client, connection);
 		return ServerFactoryJson.connectionAccepted();
@@ -31,6 +32,7 @@ public class Task {
 
 
 	public static String simulationLaunched(String jsonContent, Connection connection) {
+		// TODO Auto-generated method stub
 
 		ClientSimulation clientSimulation= ServerParserJson.getClientSimulationData(jsonContent);
 		if (Features.addSimulation(clientSimulation, connection))

@@ -1,11 +1,11 @@
-package server.tools;
+package tools;
 
 import java.io.StringWriter;
 
 import javax.json.Json;
 import javax.json.stream.JsonGenerator;
 
-import server.beans.Duration;
+import beans.Duration;
 
 public class ServerFactoryJson {
 	public static String connectionDenied(){

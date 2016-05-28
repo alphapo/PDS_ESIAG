@@ -6,17 +6,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.Connection;
-import java.util.HashMap;
 import java.util.Hashtable;
 
-import javax.swing.JComboBox;
-import javax.swing.table.DefaultTableModel;
-
 import features.Features;
-import server.beans.Authentification;
-import server.task.Task;
-import server.tools.ConnectionPool;
-import server.tools.ServerParserJson;
+import beans.Authentification;
+import task.Task;
+import tools.ConnectionPool;
+import tools.ServerParserJson;
 
 
 public class HandleClient extends Thread {
@@ -62,8 +58,13 @@ public class HandleClient extends Thread {
 			finish();
 		}
 	}
+<<<<<<< HEAD
 
-
+=======
+	
+	private String getContentJson(final BufferedReader in) throws IOException{
+		return  in.readLine(); 
+	}
 	private String getRequest(String jsonContent){
 		return ServerParserJson.getRequest(jsonContent);
 	}
@@ -92,6 +93,7 @@ public class HandleClient extends Thread {
 		System.out.println("Le login est : ---->"+getLoginUser());
 	}
 	
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 	public static String getDate1() {
 		return date1;
 	}
@@ -115,6 +117,10 @@ public class HandleClient extends Thread {
 	public static void setLoanTypeId(int loanTypeId) {
 		HandleClient.loanTypeId = loanTypeId;
 	}
+<<<<<<< HEAD
+
+	public static Hashtable<Integer, String> hashCustomers(){
+=======
 	
 	public static int getGenderId() {
 		return genderId;
@@ -125,6 +131,7 @@ public class HandleClient extends Thread {
 	}
 	
 	public static Hashtable<Integer, String> hashConsumer(){
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 		return Features.getClient(connection);
 	}
 
@@ -143,7 +150,9 @@ public class HandleClient extends Thread {
 	public static int nbSimulation(boolean date, boolean loanTypeId){
 		return Features.nbSimulation(connection, date, loanTypeId);
 	}
+<<<<<<< HEAD
 
+=======
 	
 	public static int nbConsumer(boolean date, boolean gender){
 		return Features.nbConsumer(connection, date, gender);
@@ -153,6 +162,7 @@ public class HandleClient extends Thread {
 		return Features.nbUser(connection, date, gender);
 	}
 	
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 	public static int nbLoan(boolean date, boolean loanTypeId){
 		return Features.nbLoan(connection, date, loanTypeId);
 	}
@@ -160,7 +170,9 @@ public class HandleClient extends Thread {
 	public static float nbInterest(boolean date, boolean loanTypeId){
 		return Features.nbInterest(connection, date, loanTypeId);
 	}
+<<<<<<< HEAD
 
+=======
 	
 	public static float maxRate(boolean date, boolean loanTypeId){
 		return Features.maxRate(connection, date, loanTypeId);
@@ -178,7 +190,7 @@ public class HandleClient extends Thread {
 		return Features.avgAgeConsumer(connection, loanTypeId);
 	}
 	
-
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 	public static float avgDurationLoan(boolean date, boolean loanTypeId){
 		return Features.avgDurationLoan(connection, date, loanTypeId);
 	}
@@ -198,10 +210,11 @@ public class HandleClient extends Thread {
 		int id = HandleClient.getLoanTypeId();
 		return id;
 	}
+<<<<<<< HEAD
 
 	private String getContentJson(final BufferedReader in) throws IOException{
 		return  in.readLine(); 
-	}
+=======
 	
 	public static String getGender(){
 		int id = HandleClient.getGenderId();
@@ -212,6 +225,7 @@ public class HandleClient extends Thread {
 			gender="M";
 		System.out.println(gender);
 		return gender;
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 	}
 	
 	public static void setServerLogin(){
