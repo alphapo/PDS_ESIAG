@@ -1,11 +1,12 @@
 package task;
 
 import java.sql.Connection;
+
+import beans.Authentification;
+import beans.Client;
 import beans.ClientSimulation;
 import beans.Duration;
 import features.Features;
-import beans.Authentification;
-import beans.Client;
 import tools.ServerFactoryJson;
 import tools.ServerParserJson;
 

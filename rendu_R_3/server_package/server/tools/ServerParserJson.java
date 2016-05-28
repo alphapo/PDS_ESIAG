@@ -5,11 +5,10 @@ import javax.json.Json;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import beans.ClientSimulation;
-import beans.Duration;
 import beans.Authentification;
 import beans.Client;
-//import beans.Simulation;
+import beans.ClientSimulation;
+import beans.Duration;
 
 public class ServerParserJson {
 	static public Authentification getAthentification(String jsonContent){
