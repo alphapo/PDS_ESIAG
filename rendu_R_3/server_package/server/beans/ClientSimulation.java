@@ -1,4 +1,4 @@
-package client.beans;
+package server.beans;
 
 import java.sql.Date;
 
@@ -40,7 +40,6 @@ public class ClientSimulation {
 	public void setId_name(String id_name) {
 		this.id_name = id_name;
 	}
-	
 	public int getId_user() {
 		return id_user;
 	}

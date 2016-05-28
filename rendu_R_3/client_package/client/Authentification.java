@@ -19,9 +19,14 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+<<<<<<< HEAD
+import tools.ClientFactoryJson;
+import tools.Communicator;
+=======
 import client.beans.ManageUc;
 import client.tools.ClientFactoryJson;
 import client.tools.Communicator;
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 
 
 public class Authentification extends JFrame implements ActionListener
@@ -107,6 +112,20 @@ public class Authentification extends JFrame implements ActionListener
 			communicator.sendData(ClientFactoryJson.makeJSONauthentification(identifiant, password));
 			if(communicator.receiveData().equals("OK") ) {
 
+<<<<<<< HEAD
+				//				int res = JOptionPane.showOptionDialog(null, "Vous etes connecté", "Test", JOptionPane.DEFAULT_OPTION,
+				//						JOptionPane.INFORMATION_MESSAGE, null, null, null);
+				//				System.out.println(res);
+				//				if(res ==0){
+
+
+				new client.InterClient();
+			}
+			//			}
+
+
+			else{
+=======
 				int res = JOptionPane.showOptionDialog(null, "Vous etes connecté", "Test", JOptionPane.DEFAULT_OPTION,
 				        JOptionPane.INFORMATION_MESSAGE, null, null, null);
 				System.out.println(res);
@@ -127,7 +146,9 @@ public class Authentification extends JFrame implements ActionListener
 				
 	
 			}else
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 				JOptionPane.showMessageDialog(null, "Vos identifiants ne sont pas corrects");
-		}	
+			}	
+		}
 	}
 }

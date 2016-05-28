@@ -49,5 +49,12 @@ public interface InformationsIndicators extends Remote{
 	public String getAgency() throws RemoteException;
 	
 	public void sendRate(double rate, int idLoanType) throws RemoteException;
-
+	
+		public JComboBox selectLoantypeBox() throws RemoteException;
+	
+	public JComboBox selectConsumerBox() throws RemoteException;
+	
+	public HashMap selectConsumerBox2() throws RemoteException;
+	
+	public DefaultTableModel  selectSimulation(int id_user, int id_loantype) throws RemoteException;
 }

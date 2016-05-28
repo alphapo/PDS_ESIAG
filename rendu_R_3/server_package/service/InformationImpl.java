@@ -106,6 +106,24 @@ public class InformationImpl extends UnicastRemoteObject implements Informations
 	public int nbConsumer(boolean date, boolean gender) throws RemoteException {		
 		return HandleClient.nbConsumer(date, gender);
 	}
+	
+	public JComboBox selectLoantypeBox(){
+		return HandleClient.selectLoantypeBox();
+	}
+	
+	public JComboBox selectConsumerBox(){
+		return HandleClient.selectConsumerBox();
+	}
+	
+		public HashMap selectConsumerBox2()
+	{
+		return HandleClient.selectConsumerBox2();
+	}
+		
+	public DefaultTableModel  selectSimulation(int id_user, int id_loantype)
+	{
+		return HandleClient.selectSimulation(id_user, id_loantype);
+	}
 
 
 }

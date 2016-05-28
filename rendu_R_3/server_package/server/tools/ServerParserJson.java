@@ -5,10 +5,10 @@ import javax.json.Json;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import client.beans.ClientSimulation;
 import server.beans.Authentification;
 import server.beans.Client;
-import server.beans.Simulation;
+import server.beans.ClientSimulation;
+import server.beans.Duration;
 
 public class ServerParserJson {
 	static public Authentification getAthentification(String jsonContent){
@@ -57,28 +57,32 @@ public class ServerParserJson {
 		return client;
 	}
 	
-	// method to recover data entered in the interface
+	// Read Json sent by a client after a simualtion 
 	
 	static public ClientSimulation getClientSimulationData(String jsonContent){
 		ClientSimulation clientSimulation = new ClientSimulation();
 		JSONObject jObject = null;
 		try {
 			jObject = new JSONObject(jsonContent);
-			/*
-			 * à Corriger une fois les methodes implémentés.
-			clientSimulation.setUser(jObject.getString("id_user"));
-			ClientSimulation.setSimulationDate(jObject.getString("simulationDate"));
-			ClientSimulation.setStatus(jObject.getString("status"));
-			*/
+		
+			 
+			clientSimulation.setId_user(jObject.getInt("id_user"));
+			clientSimulation.setDay(jObject.getString("day"));
+			clientSimulation.setStatus(jObject.getInt("status"));
+			clientSimulation.setDuration(jObject.getDouble("duration"));
+			clientSimulation.setAmount(jObject.getDouble("amount"));
+			clientSimulation.setRate(jObject.getDouble("rate"));
+			clientSimulation.setId_loanType(jObject.getInt("id_loanType"));
+			clientSimulation.setId_name(jObject.getString("id_name"));
 			
-			clientSimulation.setDuration(jObject.getInt("status"));
-			clientSimulation.setAmount(jObject.getInt("amount"));
-			
-			/*
-			clientSimulation.setInterest(jObject.getInt("amount"));
-			clientSimulation.setLoanType(jObject.getInt("interest"));
-			*/
-			clientSimulation.setFreqency(jObject.getString("frequency"));
+			System.out.println("id_user:"+ clientSimulation.getId_user());
+			System.out.println("day:"+ clientSimulation.getDay());
+			System.out.println("status:"+ clientSimulation.getStatus());
+			System.out.println("duration:"+clientSimulation.getDuration());
+			System.out.println("amount:"+ clientSimulation.getAmount());
+			System.out.println("rate: "+clientSimulation.getRate());
+			System.out.println("id_loanType"+ clientSimulation.getId_loanType());
+			System.out.println("id_name"+ clientSimulation.getId_name());
 			
 			
 			
@@ -88,5 +92,7 @@ public class ServerParserJson {
 		}
 		return clientSimulation;
 	}
+	
+	
 	
 }

@@ -1,4 +1,4 @@
-package server.beans;
+package beans;
 
 
 public class Authentification {
