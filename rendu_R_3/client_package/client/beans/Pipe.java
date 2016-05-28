@@ -2,6 +2,8 @@ package client.beans;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Label;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
@@ -13,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+
+
 
 public class Pipe {
 	double amount ;
@@ -51,19 +56,30 @@ public class Pipe {
 		pane.setLayout(new BorderLayout());
 
 		JLabel capitalLabel = new JLabel("Capital : "+loanRepaymentPlan.getCapital()+"€");
-		JLabel rateLabel = new JLabel("Taux d'interet : "+loanRepaymentPlan.getRate()*100+"%");
+		JLabel rateLabel = new JLabel("Taux d'intérêt : "+loanRepaymentPlan.getRate()*100+"%");
 		JLabel durationLabel = new JLabel("Durée : "+loanRepaymentPlan.getDuration()+" mois");
+		
+		capitalLabel.setAlignmentX((float) 0.5);
+		rateLabel.setAlignmentX((float) 0.5);
+		durationLabel.setAlignmentX((float) 0.5);
 
 		BoxLayout boxLayout = new BoxLayout(paneNorth, BoxLayout.Y_AXIS); // top to bottom
+		JLabel title = new JLabel("RAPPEL DES PARAMETRES DE LA SIMULATION");
+		title.setAlignmentX((float) 0.5);
+		title.setFont(new Font("Italic", Font.BOLD, 20));
+		
+		JLabel array = new JLabel("Tableau d'amortissement");
+		array.setFont(new Font("Serif", Font.BOLD, 16));
+		array.setAlignmentX((float) 0.5);
 		paneNorth.setLayout(boxLayout);
 		paneNorth.add(new JLabel("  "));
-		paneNorth.add(new JLabel("RAPPEL DES PARAMETRES DE LA SIMULATION"));
+		paneNorth.add(title);
 		paneNorth.add(new JLabel("  "));
 		paneNorth.add(capitalLabel);
 		paneNorth.add(rateLabel);
 		paneNorth.add(durationLabel);
 		paneNorth.add(new JLabel("  "));
-		paneNorth.add(new JLabel("Tableau d'amortissement"));
+		paneNorth.add(array);
 		pane.add("North", paneNorth);
 
 

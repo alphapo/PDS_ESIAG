@@ -17,9 +17,9 @@ public class TemporaryMain {
 		double insuranceByMonth = 30;
 		Frequency frequency = Frequency.Monthly;
 		int reimbursementType = 3;
-		
+
 		new Pipe(amount, rateByYear, duration, insuranceByMonth, frequency, reimbursementType);
-		
+
 	}
 
 }

@@ -28,7 +28,7 @@ public class Summary {
 	public Summary( LoanRepaymentsPlan loanRepaymentsPlan ) {
 		this.loanRepaymentsPlan = loanRepaymentsPlan;
 		downloadDirectory = System.getProperty("user.dir")+System.getProperty("file.separator");
-		FILE = "recapitulatif";
+		FILE = "recapitulatif.pdf";
 		relativePath = downloadDirectory+FILE;		
 	}
 
