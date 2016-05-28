@@ -5,10 +5,11 @@ import javax.json.Json;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import server.beans.Authentification;
-import server.beans.Client;
 import server.beans.ClientSimulation;
 import server.beans.Duration;
+import server.beans.Authentification;
+import server.beans.Client;
+//import beans.Simulation;
 
 public class ServerParserJson {
 	static public Authentification getAthentification(String jsonContent){
@@ -51,7 +52,6 @@ public class ServerParserJson {
 			client.setAddress(jObject.getString("address"));
 			
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return client;
@@ -87,7 +87,6 @@ public class ServerParserJson {
 			
 			
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return clientSimulation;

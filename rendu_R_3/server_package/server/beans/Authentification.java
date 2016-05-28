@@ -1,4 +1,4 @@
-package beans;
+package server.beans;
 
 
 public class Authentification {
@@ -6,7 +6,6 @@ public class Authentification {
 	String password;
 	
 	public Authentification() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Authentification(String login, String password) {

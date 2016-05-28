@@ -47,7 +47,7 @@ public class Main {
 			String url = "rmi://localhost:1099/IndicatorsRMI";
 			System.out.println("Enregistrement de l'objet avec l'url : " + url);
 			
-			//On enregistre l'objet informationImpl auprÃ¨s du registry
+			//On enregistre l'objet informationImpl auprès du registry
 			Naming.rebind(url, informationImpl);
 
 			System.out.println("Server running ....");

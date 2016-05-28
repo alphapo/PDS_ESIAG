@@ -2,7 +2,11 @@ package service;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.HashMap;
 import java.util.Hashtable;
+
+import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
 
 public interface InformationsIndicators extends Remote{
 
