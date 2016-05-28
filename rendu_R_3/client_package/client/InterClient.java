@@ -10,10 +10,10 @@ import javax.swing.event.*;
 import javax.swing.text.*;
 import javax.xml.parsers.FactoryConfigurationError;
 
-import beans.ClientSimulation;
-import beans.Duration;
-import tools.ClientFactoryJson;
-import tools.Communicator;
+import client.beans.ClientSimulation;
+import client.beans.Duration;
+import client.tools.ClientFactoryJson;
+import client.tools.Communicator;
 
 import java.beans.PropertyChangeListener;
 import java.sql.*;
@@ -99,6 +99,7 @@ public class InterClient extends JFrame {
 			while( result.next()){
 				comboBoxLoanType.addItem(result.getString("name"));
 			}
+
 
 		}
 		catch (Exception e){
@@ -220,13 +221,9 @@ public class InterClient extends JFrame {
 			System.out.println(e);
 		}
 
-<<<<<<< HEAD
 		/*
 		 * methode sert à afficher une hashmap
 		 */
-=======
-		afficherMap(mapLoanTypeRate);
->>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 
 		simulation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

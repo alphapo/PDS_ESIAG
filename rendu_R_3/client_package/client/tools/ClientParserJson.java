@@ -1,4 +1,4 @@
-package tools;
+package client.tools;
 
 import java.util.Hashtable;
 
@@ -6,8 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import beans.ClientSimulation;
-import beans.Duration;
+import client.beans.ClientSimulation;
+import client.beans.Duration;
 
 
 public class ClientParserJson {

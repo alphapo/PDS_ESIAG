@@ -1,4 +1,4 @@
-package beans;
+package client.beans;
 
 import java.util.ArrayList;
 import java.util.HashMap;
