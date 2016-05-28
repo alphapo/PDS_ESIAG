@@ -245,4 +245,22 @@ public class HandleClient extends Thread {
 		Features.sendRate(connection, rate, idLoanType);
 
 	}
+	
+		public static JComboBox selectLoantypeBox(){
+		return Features.selectLoantypeBox(connection);
+	}
+	
+	public static JComboBox selectConsumerBox(){
+		return Features.selectConsumerBox(connection);
+	}
+
+	public static HashMap selectConsumerBox2()
+	{
+		return Features.selectConsumerBox2(connection);
+	}
+		
+	public static DefaultTableModel  selectSimulation(int id_user, int id_loantype)
+	{
+		return Features.selectSimulation(connection, id_user, id_loantype);
+	}
 }

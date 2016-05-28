@@ -660,5 +660,156 @@ public class Features {
 			return (avgAge/ageList.size());	
 	}
 	
+		public static JComboBox selectLoantypeBox(Connection conn)
+	{
+		JComboBox c = new JComboBox();
+		//Création d'un objet Statement
+		PreparedStatement state = null;
+		//L'objet ResultSet contient le résultat de la requête SQL
+		//ResultSet result = null;
+		ResultSet result = null;
+		//requete à executer
+		String req1 ="SELECT name, id_loantype FROM loantype";
+		try {
+			state = conn.prepareStatement(req1);
+			result = state.executeQuery();
+			c.removeAllItems();
+			c.addItem("");
+			while (result.next())
+			{
+				//comboBox.addItem(result.getInt("id_consumer"));
+				c.addItem(result.getString("name"));
+			}
+
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return c;
+	}
+	
+	public static JComboBox selectConsumerBox(Connection conn)
+	{
+		JComboBox c = new JComboBox();
+		//Création d'un objet Statement
+		PreparedStatement state = null;
+		//L'objet ResultSet contient le résultat de la requête SQL
+		//ResultSet result = null;
+		ResultSet result = null;
+		//requete à executer
+		String req1 ="SELECT id_COnsumer, name, firstname, dateOfBirth FROM Consumer";
+		
+		HashMap<Integer, String> hmap = new HashMap<Integer, String>();
+		try {
+			state = conn.prepareStatement(req1);
+			result = state.executeQuery();
+			c.removeAllItems();
+			//c.addItem("");
+			while (result.next())
+			{
+				//comboBox.addItem(result.getInt("id_consumer"));
+				c.addItem(result.getString("name") +" "+ result.getString("firstname")+" "+ result.getString("dateOfBirth"));
+				
+			}
+
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return c;
+	}
+	
+	public static HashMap selectConsumerBox2(Connection conn)
+	{
+		//Création d'un objet Statement
+		PreparedStatement state = null;
+		//L'objet ResultSet contient le résultat de la requête SQL
+		//ResultSet result = null;
+		ResultSet result = null;
+		//requete à executer
+		String req1 ="SELECT id_COnsumer, name, firstname, dateOfBirth FROM Consumer";
+		String concat = null;
+		HashMap<Integer, String> hmap = new HashMap<Integer, String>();
+		try {
+			state = conn.prepareStatement(req1);
+			result = state.executeQuery();
+			while (result.next())
+			{
+				//comboBox.addItem(result.getInt("id_consumer"));
+				//c.addItem(result.getString("name") +" "+ result.getString("firstname")+" "+ result.getString("dateOfBirth"));
+				concat = result.getString("name") +" "+ result.getString("firstname")+" "+ result.getString("dateOfBirth");
+				hmap.put(result.getInt("id_consumer"),concat);
+			}
+
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return hmap;
+	}
+	
+	public static DefaultTableModel  selectSimulation(Connection conn, int id_user, int id_loantype)
+	{
+		DefaultTableModel  t = null ;
+		//Création d'un objet Statement
+		PreparedStatement state = null;
+		//L'objet ResultSet contient le résultat de la requête SQL
+		//ResultSet result = null;
+		ResultSet result = null;
+		//requete à executer
+//		String req1 ="SELECT id_simulation, duration, amount, interestRate, name FROM Simulation WHERE id_user = 1";
+		String req1 ="SELECT id_simulation, duration, amount, interestRate, name FROM Simulation WHERE id_user = ? and id_loanType = ?";
+
+		//creation des objets
+		String[] columnNames = {"SimulationNumber", "name", "duration", "amount", "interestRate"};
+		int i=0, j =0;
+		int number;
+		String name ;
+		int duration;
+		int amount;
+		double interest;
+		Object[][] data = new Object[10][5];
+		System.out.println(id_user +" "+  id_loantype);
+		try {
+			state = conn.prepareStatement(req1);
+			state.setInt(1, id_user);
+			state.setInt(2, id_loantype);
+			result = state.executeQuery();
+
+			while (result.next())
+			{
+//				System.out.println("hello");
+				number = result.getInt("id_simulation");
+//				System.out.println(number);
+				name = result.getString("name");
+//				System.out.println(name);
+				duration = result.getInt("duration");
+//				System.out.println(duration);
+				amount = result.getInt("amount");
+//				System.out.println(amount);
+				interest = result.getInt("interestRate");
+//				System.out.println(interest);
+				
+				data[j][i] = number;
+				data[j][i+1] = name;
+				data[j][i+2] = duration;
+				data[j][i+3] = amount;
+				data[j][i+4] = interest;
+				j++;
+			}
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return t = new DefaultTableModel (data, columnNames);
+	}
 	
 }

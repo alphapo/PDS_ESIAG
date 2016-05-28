@@ -101,6 +101,22 @@ public class ClientService {
 		stub.sendRate(rate, idLoanType);
 	}
 
+		public JComboBox selectLoantypeBox() throws RemoteException{
+		return stub.selectLoantypeBox();
+	}
 	
+	public JComboBox selectConsumerBox() throws RemoteException{
+		return stub.selectConsumerBox();
+	}
+	
+		public HashMap selectConsumerBox2() throws RemoteException
+	{
+		return stub.selectConsumerBox2();
+	}
+		
+	public DefaultTableModel  selectSimulation(int id_user, int id_loantype) throws RemoteException
+	{
+		return stub.selectSimulation(id_user, id_loantype);
+	}
 
 }
