@@ -1,16 +1,8 @@
 package client.beans;
 
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-
 public class TemporaryMain {
 
-
-	public static void main(String[] args){
-		JFrame jframe = new JFrame();
-		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public static void main(String[] args) {
 		/*
 		 *  --------------- Parameters ----------------------------
 		 *  amount: 10 000 ; 
@@ -25,35 +17,9 @@ public class TemporaryMain {
 		double insuranceByMonth = 30;
 		Frequency frequency = Frequency.Monthly;
 		int reimbursementType = 3;
-		/*	
-		 *  1 - for in fine repayments
-		 *  2 - for constant amortization 
-		 *  3 - for constant annuity
-		 */  
 		
-		/******************** calculate loan repayments plan *************************/
-		LoanRepaymentsPlan loanRepaymentPlan = new LoanRepaymentsPlan(amount, rateByYear, duration, insuranceByMonth, reimbursementType, frequency);
-		loanRepaymentPlan.fillArray();
+		new Pipe(amount, rateByYear, duration, insuranceByMonth, frequency, reimbursementType);
 		
-		/******************** print graphic loan repayments plan *********************/
-		JTable arrayFrame = new JTable(new ShowArrayRestitution(loanRepaymentPlan));
-		
-		jframe.getContentPane().add(new JScrollPane(arrayFrame), BorderLayout.CENTER);
-
-		jframe.pack();
-		jframe.setVisible(true);
-		
-		/******************** print graphic line *********************/
-		GraphicRestitution graphicLine = new ShowGraphicLine(loanRepaymentPlan, "Graphique" ,"Restitution graphique de la simulation"); 
-		
-		/******************** print graphic bar *********************/
-		GraphicRestitution graphic3D = new ShowGraphicBar3D(loanRepaymentPlan, "Graphique" ,"Restitution graphique de la simulation");
-		
-		/******************** Download PDF version  *********************/
-		Summary recap = new Summary(loanRepaymentPlan);
-		recap.downloadPdfVersion();
-		
-		/******************** print summing-up *************************/
-		recap.printWithDevice();
 	}
+
 }

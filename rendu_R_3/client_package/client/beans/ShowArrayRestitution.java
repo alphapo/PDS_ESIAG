@@ -6,7 +6,7 @@ public class ShowArrayRestitution extends AbstractTableModel {
 	
 	private  LoanRepaymentsPlan loanRepaymentsPlan;
 
-	private final String[] entetes = {"Numéro", "Mensualité", "Capital Amorti","Interets","Assurance","Capital restant dû"};
+	private final String[] entetes = {"Numéro", "Mensualité", "Capital Amorti","Intérêts","Assurance","Capital dû"};
 
 	/*
 	 * 
