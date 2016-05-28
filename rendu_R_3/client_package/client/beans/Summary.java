@@ -1,12 +1,24 @@
 package client.beans;
 
 import java.awt.Desktop;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.PieSectionLabelGenerator;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.data.general.DefaultPieDataset;
+
+import com.itextpdf.awt.DefaultFontMapper;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -15,7 +27,9 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 
 
@@ -32,11 +46,11 @@ public class Summary {
 		relativePath = downloadDirectory+FILE;		
 	}
 
-	public void downloadPdfVersion() {
+	public void download() {
 		try {
-
+			PdfWriter writer = null;
 			Document document = new Document();
-			PdfWriter.getInstance(document, new FileOutputStream(relativePath));
+			writer = PdfWriter.getInstance(document, new FileOutputStream(relativePath));
 			document.open();
 
 			// recover current date only
@@ -92,6 +106,17 @@ public class Summary {
 			}
 
 			document.add(table);
+			int width = 600;
+			int heigth = 300;
+			JFreeChart chart  = generatePieChart();
+			PdfContentByte contentByte = writer.getDirectContent();
+			PdfTemplate template = contentByte.createTemplate(width, heigth);
+			Graphics2D graphics2d = template.createGraphics(width, heigth, new DefaultFontMapper());
+			Rectangle2D rectangle2d = new Rectangle2D.Double(0, 0, width,heigth);
+			chart.draw(graphics2d, rectangle2d);
+			graphics2d.dispose();
+			contentByte.addTemplate(template, 0, 0);
+
 			document.close();
 
 			// and open download Directory and file for user 
@@ -179,5 +204,24 @@ public class Summary {
 		case Monthly:	return "mensuel";
 		default:	return null;
 		}
+	}
+	private  JFreeChart generatePieChart() {
+		DefaultPieDataset dataSet = new DefaultPieDataset();
+		dataSet.setValue("Capital", loanRepaymentsPlan.getCapital());
+		dataSet.setValue("Intérêts", loanRepaymentsPlan.getTotalInterest());
+		dataSet.setValue("Assurance", loanRepaymentsPlan.getDuration()*loanRepaymentsPlan.getInsurance());
+
+		JFreeChart chart = ChartFactory.createPieChart(
+				"Restitution graphique des paiements", dataSet, true, true, false);
+		PiePlot plot = (PiePlot) chart.getPlot();
+		plot.setExplodePercent("Intérêts", 0.30);
+		plot.setExplodePercent("Assurance", 0.30);
+		plot.setExplodePercent("Capital", 0.30);
+		plot.setSimpleLabels(true);
+		plot.setCircular(true);
+		 PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
+		            "{1} € soit ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
+		plot.setLabelGenerator(gen);;
+		return chart;
 	}
 }

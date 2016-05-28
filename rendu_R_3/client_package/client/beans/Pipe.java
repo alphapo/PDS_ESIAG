@@ -93,18 +93,18 @@ public class Pipe {
 		JButton downloadButton = new JButton("Télécharger le récapitulatif");
 		downloadButton.addMouseListener(new MouseAdapter()
 		{ public void mouseClicked(MouseEvent event) {
-			recap.downloadPdfVersion();
+			recap.download();
 		}
 		});
 
-		JButton diagramBar = new JButton("Diagramme en bande");
+		JButton diagramBar = new JButton("Graphique en bande");
 		diagramBar.addMouseListener(new MouseAdapter()
 		{ public void mouseClicked(MouseEvent event) {
 			new ShowGraphicBar3D(loanRepaymentPlan, "Graphique" ,"Restitution graphique de la simulation");
 		}
 		});
 
-		JButton diagramLine = new JButton("Diagramme en ligne");
+		JButton diagramLine = new JButton("Graphique en ligne");
 		diagramLine.addMouseListener(new MouseAdapter()
 		{ public void mouseClicked(MouseEvent event) {
 			new ShowGraphicLine(loanRepaymentPlan, "Graphique" ,"Restitution graphique de la simulation"); 
