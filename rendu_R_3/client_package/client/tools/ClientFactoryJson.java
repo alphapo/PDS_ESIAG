@@ -78,6 +78,7 @@ public class ClientFactoryJson {
 	}
 	
 	public static String makeJSONgetDurationData(){
+<<<<<<< HEAD
 		
 			StringWriter sw = new StringWriter();
 			JsonGenerator jsonGen = Json.createGenerator(sw);
@@ -121,4 +122,18 @@ public class ClientFactoryJson {
 		String jsonContent = sw.toString();
 		return jsonContent;
 	}
+=======
+		
+			StringWriter sw = new StringWriter();
+			JsonGenerator jsonGen = Json.createGenerator(sw);
+			jsonGen.writeStartObject()
+					.write("request","GET_DURATIONDATA")
+					.writeEnd()
+					.close();
+			String jsonContent = sw.toString();
+			return jsonContent;
+		}
+		
+	
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 }

@@ -36,6 +36,7 @@ public class ClientSimulation {
 	}
 	public void setId_loanType(int id_loanType) {
 		this.id_loanType = id_loanType;
+<<<<<<< HEAD
 	}
 	public void setId_name(String id_name) {
 		this.id_name = id_name;
@@ -56,6 +57,28 @@ public class ClientSimulation {
 	public double getAmount() {
 		return amount;
 	}
+=======
+	}
+	public void setId_name(String id_name) {
+		this.id_name = id_name;
+	}
+	
+	public int getId_user() {
+		return id_user;
+	}
+	public String getDay() {
+		return day;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public double getDuration() {
+		return duration;
+	}
+	public double getAmount() {
+		return amount;
+	}
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 	public double getRate() {
 		return rate;
 	}
@@ -68,5 +91,10 @@ public class ClientSimulation {
 	
 }	
 	
+<<<<<<< HEAD
 	
 	
+=======
+	
+	
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0

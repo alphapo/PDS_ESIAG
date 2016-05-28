@@ -100,7 +100,6 @@ public class InterClient extends JFrame {
 				comboBoxLoanType.addItem(result.getString("name"));
 			}
 
-
 		}
 		catch (Exception e){
 			JOptionPane.showMessageDialog(null, e);
@@ -221,9 +220,13 @@ public class InterClient extends JFrame {
 			System.out.println(e);
 		}
 
+<<<<<<< HEAD
 		/*
 		 * methode sert à afficher une hashmap
 		 */
+=======
+		afficherMap(mapLoanTypeRate);
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 
 		simulation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
