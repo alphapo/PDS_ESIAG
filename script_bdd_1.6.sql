@@ -23,7 +23,20 @@ USE `test_pds` ;
 -- -----------------------------------------------------
 -- Table `test_pds`.`Agency`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `test_pds`.`Agency` ;
+
+drop table IF EXISTS Staff;
+drop table IF EXISTS Account;
+drop table IF EXISTS History;
+drop table IF EXISTS Loan;
+drop table IF EXISTS Loantype;
+drop table IF EXISTS Simulation;
+drop table IF EXISTS User;
+drop table IF EXISTS Insurance;
+drop table IF EXISTS Consumer;
+drop table IF EXISTS Agency;
+drop table IF EXISTS refund;
+drop table IF EXISTS Status;
+
 
 CREATE TABLE IF NOT EXISTS `test_pds`.`Agency` (
   `id_Agency` INT NOT NULL AUTO_INCREMENT,
@@ -36,12 +49,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `test_pds`.`Consumer`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `test_pds`.`Consumer` ;
 
 CREATE TABLE IF NOT EXISTS `test_pds`.`Consumer` (
   `id_Consumer` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `firstname` VARCHAR(45) NOT NULL,
+  `gender` VARCHAR(1) NOT NULL,
   `dateOfBirth` DATE NOT NULL,
   `address` VARCHAR(45) NOT NULL,
   `postCode` VARCHAR(5) NOT NULL,
@@ -63,7 +76,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `test_pds`.`Account`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `test_pds`.`Account` ;
 
 CREATE TABLE IF NOT EXISTS `test_pds`.`Account` (
   `id_account` INT NOT NULL AUTO_INCREMENT,
@@ -82,7 +94,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `test_pds`.`status`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `test_pds`.`status` ;
 
 CREATE TABLE IF NOT EXISTS `test_pds`.`status` (
   `id_status` INT NOT NULL AUTO_INCREMENT,
@@ -94,13 +105,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `test_pds`.`user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `test_pds`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `test_pds`.`user` (
   `id_user` INT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `status` VARCHAR(45) NOT NULL,
   `id_Consumer` INT NOT NULL,
   `id_status` INT NOT NULL,
   PRIMARY KEY (`id_user`, `id_Consumer`, `id_status`),
@@ -122,7 +131,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `test_pds`.`Insurance`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `test_pds`.`Insurance` ;
 
 CREATE TABLE IF NOT EXISTS `test_pds`.`Insurance` (
   `id_Insurance` INT NOT NULL AUTO_INCREMENT,
@@ -135,7 +143,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `test_pds`.`refund`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `test_pds`.`refund` ;
 
 CREATE TABLE IF NOT EXISTS `test_pds`.`refund` (
   `id_refund` INT NOT NULL AUTO_INCREMENT,
@@ -147,14 +154,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `test_pds`.`LoanType`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `test_pds`.`LoanType` ;
 
 CREATE TABLE IF NOT EXISTS `test_pds`.`LoanType` (
   `id_loanType` INT NOT NULL AUTO_INCREMENT,
-  `id_Insurance` INT NULL,
+  `id_Insurance` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `id_refund` INT NOT NULL,
-  `rate` FLOAT NULL,
+  `rate` FLOAT NOT NULL,
   PRIMARY KEY (`id_loanType`, `id_Insurance`, `id_refund`),
   INDEX `fk_LoanType_Insurance1_idx` (`id_Insurance` ASC),
   INDEX `fk_LoanType_refund1_idx` (`id_refund` ASC),
@@ -174,13 +180,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `test_pds`.`Simulation`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `test_pds`.`Simulation` ;
 
 CREATE TABLE IF NOT EXISTS `test_pds`.`Simulation` (
   `id_Simulation` INT NOT NULL AUTO_INCREMENT,
   `id_user` INT NOT NULL,
   `simulationDate` DATE NOT NULL,
-  `status` VARCHAR(45) NOT NULL,
+  `status` INT NOT NULL,
   `duration` BIGINT(20) NOT NULL,
   `amount` INT NOT NULL,
   `interestRate` FLOAT NULL,
@@ -205,7 +210,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `test_pds`.`loan`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `test_pds`.`loan` ;
 
 CREATE TABLE IF NOT EXISTS `test_pds`.`loan` (
   `id_loan` INT NOT NULL,
@@ -223,7 +227,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `test_pds`.`Staff`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `test_pds`.`Staff` ;
 
 CREATE TABLE IF NOT EXISTS `test_pds`.`Staff` (
   `id_staff` INT NOT NULL AUTO_INCREMENT,
@@ -249,16 +252,15 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `test_pds`.`Historique`
+-- Table `test_pds`.`history`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `test_pds`.`Historique` ;
 
-CREATE TABLE IF NOT EXISTS `test_pds`.`Historique` (
-  `id_Historique` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `test_pds`.`history` (
+  `id_history` INT NOT NULL AUTO_INCREMENT,
   `id_Simulation` INT NOT NULL,
-  PRIMARY KEY (`id_Historique`, `id_Simulation`),
-  INDEX `fk_Historique_Simulation1_idx` (`id_Simulation` ASC),
-  CONSTRAINT `fk_Historique_Simulation1`
+  PRIMARY KEY (`id_history`, `id_Simulation`),
+  INDEX `fk_history_Simulation1_idx` (`id_Simulation` ASC),
+  CONSTRAINT `fk_history_Simulation1`
     FOREIGN KEY (`id_Simulation`)
     REFERENCES `test_pds`.`Simulation` (`id_Simulation`)
     ON DELETE NO ACTION

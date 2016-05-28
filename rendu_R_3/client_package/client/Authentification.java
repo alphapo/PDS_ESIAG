@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import client.beans.ManageUc;
 import client.tools.ClientFactoryJson;
 import client.tools.Communicator;
 
@@ -114,9 +115,11 @@ public class Authentification extends JFrame implements ActionListener
 					//After the connetion, the user can choose an operation (indicator, simulation...)
 					//Here, we have ihmIndicator
 					try {
-						new IhmIndicator(communicator, identifiant);
+//						new ManageUc(communicator);
+//						new Ihm(communicator);
+//						new IhmIndicator(communicator, identifiant);
+						new ManageUc(communicator, identifiant);
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					this.dispose();
