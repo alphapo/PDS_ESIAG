@@ -1,9 +1,9 @@
 package client;
 
-import client.beans.Client;
-import client.tools.ClientFactoryJson;
-import client.tools.ClientParserJson;
-import client.tools.Communicator;
+import beans.Client;
+import tools.ClientFactoryJson;
+import tools.ClientParserJson;
+import tools.Communicator;
 
 public class Model {
 	

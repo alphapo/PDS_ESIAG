@@ -1,4 +1,4 @@
-package windowBuilderTest;
+package client;
 
 import java.awt.*;
 import java.awt.EventQueue;

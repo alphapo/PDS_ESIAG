@@ -19,8 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import client.tools.ClientFactoryJson;
-import client.tools.Communicator;
+import tools.ClientFactoryJson;
+import tools.Communicator;
 
 
 public class Authentification extends JFrame implements ActionListener
@@ -106,25 +106,20 @@ public class Authentification extends JFrame implements ActionListener
 			communicator.sendData(ClientFactoryJson.makeJSONauthentification(identifiant, password));
 			if(communicator.receiveData().equals("OK") ) {
 
-				int res = JOptionPane.showOptionDialog(null, "Vous etes connecté", "Test", JOptionPane.DEFAULT_OPTION,
-				        JOptionPane.INFORMATION_MESSAGE, null, null, null);
-				System.out.println(res);
+				//				int res = JOptionPane.showOptionDialog(null, "Vous etes connecté", "Test", JOptionPane.DEFAULT_OPTION,
+				//						JOptionPane.INFORMATION_MESSAGE, null, null, null);
+				//				System.out.println(res);
+				//				if(res ==0){
 
-				if(res ==0){
-					//After the connetion, the user can choose an operation (indicator, simulation...)
-					//Here, we have ihmIndicator
-					try {
-						new IhmIndicator(communicator, identifiant);
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					this.dispose();
-				}
-				
-	
-			}else
+
+				new client.InterClient();
+			}
+			//			}
+
+
+			else{
 				JOptionPane.showMessageDialog(null, "Vos identifiants ne sont pas corrects");
-		}	
+			}	
+		}
 	}
 }
