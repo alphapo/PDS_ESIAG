@@ -8,11 +8,11 @@ import java.net.Socket;
 import java.sql.Connection;
 import java.util.Hashtable;
 
-import beans.Authentification;
 import features.Features;
-import task.Task;
-import tools.ConnectionPool;
-import tools.ServerParserJson;
+import server.beans.Authentification;
+import server.task.Task;
+import server.tools.ConnectionPool;
+import server.tools.ServerParserJson;
 
 
 public class HandleClient extends Thread {

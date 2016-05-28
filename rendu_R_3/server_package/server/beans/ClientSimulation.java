@@ -1,4 +1,4 @@
-package beans;
+package server.beans;
 
 import java.sql.Date;
 

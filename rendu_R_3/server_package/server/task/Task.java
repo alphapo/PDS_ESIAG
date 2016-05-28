@@ -1,14 +1,14 @@
-package task;
+package server.task;
 
 import java.sql.Connection;
 
-import beans.Authentification;
-import beans.Client;
-import beans.ClientSimulation;
-import beans.Duration;
 import features.Features;
-import tools.ServerFactoryJson;
-import tools.ServerParserJson;
+import server.beans.Authentification;
+import server.beans.Client;
+import server.beans.ClientSimulation;
+import server.beans.Duration;
+import server.tools.ServerFactoryJson;
+import server.tools.ServerParserJson;
 
 public class Task {
 	static String result = null;

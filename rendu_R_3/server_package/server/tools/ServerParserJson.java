@@ -1,14 +1,14 @@
-package tools;
+package server.tools;
 
 import javax.json.Json;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import beans.Authentification;
-import beans.Client;
-import beans.ClientSimulation;
-import beans.Duration;
+import server.beans.Authentification;
+import server.beans.Client;
+import server.beans.ClientSimulation;
+import server.beans.Duration;
 
 public class ServerParserJson {
 	static public Authentification getAthentification(String jsonContent){

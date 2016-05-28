@@ -6,11 +6,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Hashtable;
 
-import beans.Authentification;
-import beans.Client;
-import beans.ClientSimulation;
-import beans.Duration;
 import server.HandleClient;
+import server.beans.Authentification;
+import server.beans.Client;
+import server.beans.ClientSimulation;
+import server.beans.Duration;
 
 public class Features {
 	static String dateInf;
