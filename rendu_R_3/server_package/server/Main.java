@@ -8,8 +8,7 @@ import java.net.Socket;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.util.Properties;
-import server.tools.ConnectionPool;
-import service.InformationImpl;
+import tools.ConnectionPool;
 
 
 public class Main {
@@ -37,21 +36,9 @@ public class Main {
 		server_port = Integer.parseInt(prop.getProperty("port_listen"));
 		
 		try {
-
-			System.out.println("Mise en place du port registre");
-
-			LocateRegistry.createRegistry(1099);
-
-			InformationImpl informationImpl = new InformationImpl();
-
-			String url = "rmi://localhost:1099/IndicatorsRMI";
-			System.out.println("Enregistrement de l'objet avec l'url : " + url);
-			
-			//On enregistre l'objet informationImpl auprès du registry
-			Naming.rebind(url, informationImpl);
-
-			System.out.println("Server running ....");
 			serverSocket = new ServerSocket(server_port);
+			System.out.println("Server running ....");
+			
 			
 			while(true){
 				clientSocket = serverSocket.accept();

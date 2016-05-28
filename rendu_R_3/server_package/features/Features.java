@@ -12,8 +12,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Hashtable;
 import server.HandleClient;
-import server.beans.Authentification;
-import server.beans.Client;
+import beans.Authentification;
+import beans.Client;
+import beans.ClientSimulation;
+import beans.Duration;
 
 public class Features {
 	static String dateInf;
@@ -67,6 +69,7 @@ public class Features {
 		else
 			return false;
 	}
+	
 	public static void addClient(Client client, Connection connection) {
 		try {
 			Statement state = connection.createStatement();
@@ -77,6 +80,21 @@ public class Features {
 		}
 	}
 	
+<<<<<<< HEAD
+//	public static void addSimulation(Simulation simulation, Connection connection){
+//		try {
+//			
+//			Statement state = connection.createStatement();
+//			//Data insertion in the simulation table
+//			state.executeQuery("INSERT INTO simulation values()");
+//			
+//		} catch (SQLException ex){
+//			ex.printStackTrace();
+//		}
+//	}
+	
+=======
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 	public static Hashtable<Integer, String> getClient(Connection connection) {
 	    Hashtable<Integer, String> htConsumer = new Hashtable<Integer, String>();
 
@@ -462,6 +480,7 @@ public class Features {
 		}
 		return nb;
 	}
+
 	
 	public static float minRate(Connection connection, boolean date, boolean loanTypeId){
 		float nb=0;
@@ -489,6 +508,42 @@ public class Features {
 		return nb;
 	}
 	
+<<<<<<< HEAD
+	public static boolean addSimulation(ClientSimulation clientSimulation, Connection connection){
+		boolean status = true;
+		try {
+			
+			Statement state = connection.createStatement();
+			//Data insertion in the simulation table
+			String sql = "INSERT INTO SIMULATION VALUES (DEFAULT, "+clientSimulation.getId_user()+" ,'"+clientSimulation.getDay()+"' ,"+clientSimulation.getStatus()+", "+clientSimulation.getDuration()+" , "+clientSimulation.getAmount()+" ,"+clientSimulation.getRate()+" , "+clientSimulation.getId_loanType()+" ,'"+clientSimulation.getId_name()+"' )";
+			System.out.println(sql);
+			state.executeUpdate(sql);
+			
+			
+		} catch (SQLException ex){
+			status = false;
+			ex.printStackTrace();
+		}
+		return status;
+	}
+	public static Duration getDataDuration(Connection connection){
+		Duration duration = new Duration();
+		ResultSet result = null;
+		try {
+			
+			Statement state = connection.createStatement();
+			//Data insertion in the simulation table
+			String sql = "SELECT * FROM DURATION";
+			System.out.println(sql);
+			result = state.executeQuery(sql);
+			while(result.next()){
+				duration.add(result.getDouble("duration"), result.getDouble("month"));
+			}
+		} catch (SQLException ex){
+			ex.printStackTrace();
+		}
+		return duration;
+=======
 	public static float avgRate(Connection connection, boolean date, boolean loanTypeId){
 		float nb=0;
 		String s = HandleClient.getDate();
@@ -521,6 +576,7 @@ public class Features {
 		number = Math.round(number * Math.pow(100,1)) / Math.pow(100,1);
 		//keep 2 numbers after comma
 		return (float)((int)(number*100))/100;
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 	}
 	
 	

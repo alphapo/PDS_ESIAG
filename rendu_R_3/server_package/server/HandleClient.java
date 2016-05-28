@@ -9,10 +9,10 @@ import java.sql.Connection;
 import java.util.Hashtable;
 
 import features.Features;
-import server.beans.Authentification;
-import server.task.Task;
-import server.tools.ConnectionPool;
-import server.tools.ServerParserJson;
+import beans.Authentification;
+import task.Task;
+import tools.ConnectionPool;
+import tools.ServerParserJson;
 
 
 public class HandleClient extends Thread {
@@ -46,11 +46,10 @@ public class HandleClient extends Thread {
 				break;
 				case "ADD_CLIENT": result = Task.addClientLaunched(jsonContent, connection);
 				break;
-				case "LOAN":  // Task for loan ...
-					break;
-
-				case "EXIT":  // Task when client exit...
-					break;
+				case "ADD_CLIENT_SIMULATION":  result = Task.simulationLaunched(jsonContent, connection);
+				break;
+				case "GET_DURATIONDATA":  result = Task.getDurationDataLaunched(jsonContent, connection);
+				break;
 				}
 
 				out.println(result);
@@ -59,6 +58,9 @@ public class HandleClient extends Thread {
 			finish();
 		}
 	}
+<<<<<<< HEAD
+
+=======
 	
 	private String getContentJson(final BufferedReader in) throws IOException{
 		return  in.readLine(); 
@@ -91,6 +93,7 @@ public class HandleClient extends Thread {
 		System.out.println("Le login est : ---->"+getLoginUser());
 	}
 	
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 	public static String getDate1() {
 		return date1;
 	}
@@ -98,7 +101,7 @@ public class HandleClient extends Thread {
 	public static void setDate1(String date1) {
 		HandleClient.date1 = date1;
 	}
-	
+
 	public static String getDate2() {
 		return date2;
 	}
@@ -106,7 +109,7 @@ public class HandleClient extends Thread {
 	public static void setDate2(String date2) {
 		HandleClient.date2 = date2;
 	}
-	
+
 	public static int getLoanTypeId() {
 		return loanTypeId;
 	}
@@ -114,6 +117,10 @@ public class HandleClient extends Thread {
 	public static void setLoanTypeId(int loanTypeId) {
 		HandleClient.loanTypeId = loanTypeId;
 	}
+<<<<<<< HEAD
+
+	public static Hashtable<Integer, String> hashCustomers(){
+=======
 	
 	public static int getGenderId() {
 		return genderId;
@@ -124,24 +131,28 @@ public class HandleClient extends Thread {
 	}
 	
 	public static Hashtable<Integer, String> hashConsumer(){
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 		return Features.getClient(connection);
 	}
-	
+
 	public static Hashtable<Integer, String> hashLoanType(){
 		return Features.getLoanType(connection);
 	}
-	
+
 	public static int nbSimulationPerDate(String dateInf,String dateSup){
 		return Features.nbSimulationPerDate(connection ,dateInf, dateSup);
 	}
-	
+
 	public static int nbSimulationPerConsumer(int idConsumer){
 		return Features.nbSimulationPerConsumer(connection ,idConsumer);
 	}
-	
+
 	public static int nbSimulation(boolean date, boolean loanTypeId){
 		return Features.nbSimulation(connection, date, loanTypeId);
 	}
+<<<<<<< HEAD
+
+=======
 	
 	public static int nbConsumer(boolean date, boolean gender){
 		return Features.nbConsumer(connection, date, gender);
@@ -151,13 +162,17 @@ public class HandleClient extends Thread {
 		return Features.nbUser(connection, date, gender);
 	}
 	
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 	public static int nbLoan(boolean date, boolean loanTypeId){
 		return Features.nbLoan(connection, date, loanTypeId);
 	}
-	
+
 	public static float nbInterest(boolean date, boolean loanTypeId){
 		return Features.nbInterest(connection, date, loanTypeId);
 	}
+<<<<<<< HEAD
+
+=======
 	
 	public static float maxRate(boolean date, boolean loanTypeId){
 		return Features.maxRate(connection, date, loanTypeId);
@@ -175,25 +190,31 @@ public class HandleClient extends Thread {
 		return Features.avgAgeConsumer(connection, loanTypeId);
 	}
 	
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 	public static float avgDurationLoan(boolean date, boolean loanTypeId){
 		return Features.avgDurationLoan(connection, date, loanTypeId);
 	}
-	
+
 	public static float avgAmountLoan(boolean date, boolean loanTypeId){
 		return Features.avgAmountLoan(connection, date, loanTypeId);
 	}
-	
+
 	public static String getDate(){
-//		date1 = "2016/04/01";
+		//		date1 = "2016/04/01";
 		date1 = HandleClient.getDate1();
 		date2 = HandleClient.getDate2();
 		return "simulationDate >= \""+date1+"\" and simulationDate <= \""+date2+"\"";
 	}
-	
+
 	public static int getLoanType(){
 		int id = HandleClient.getLoanTypeId();
 		return id;
 	}
+<<<<<<< HEAD
+
+	private String getContentJson(final BufferedReader in) throws IOException{
+		return  in.readLine(); 
+=======
 	
 	public static String getGender(){
 		int id = HandleClient.getGenderId();
@@ -204,6 +225,7 @@ public class HandleClient extends Thread {
 			gender="M";
 		System.out.println(gender);
 		return gender;
+>>>>>>> 7a6cb1ff9973eb2df612a2cd72a4103ee7d47dc0
 	}
 	
 	public static void setServerLogin(){

@@ -1,4 +1,4 @@
-package client.beans;
+package beans;
 
 public class ConsumerAdvisorSimulation {
 	String name;
