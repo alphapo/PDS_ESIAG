@@ -90,7 +90,6 @@ public class InterClient extends JFrame {
 				comboBoxLoanType.addItem(result.getString("name"));
 			}
 
-
 		}
 		catch (Exception e){
 			JOptionPane.showMessageDialog(null, e);
@@ -138,7 +137,6 @@ public class InterClient extends JFrame {
 		contentPane.add(durationComboBox);
 
 		try{
-			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/test_pds","root","");
 			statement=connection.createStatement();
 			result=statement.executeQuery("select * from duration");
 			
@@ -177,7 +175,6 @@ public class InterClient extends JFrame {
 		HashMap<String, Double> mapLoanTypeInsurance= new HashMap<>();
 		HashMap<String, Double> mapLoanTypeRate= new HashMap<>();
 		try{
-			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/test_pds","root","");
 			statement=connection.createStatement();
 			result=statement.executeQuery("select * from loanType ,insurance where insurance.id_insurance=loanType.id_insurance");
 			while( result.next()){
@@ -193,10 +190,6 @@ public class InterClient extends JFrame {
 		}
 
 		afficherMap(mapLoanTypeRate);
-		//System.out.println(mapLoanTypeInsurance.get("Prêt voiture").doubleValue());	
-
-
-
 
 		btnSimuler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
