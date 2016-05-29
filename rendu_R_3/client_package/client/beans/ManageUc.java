@@ -24,10 +24,11 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import client.Ihm;
+import client.IhmComparaison;
 import client.IhmIndicator;
 import client.tools.Communicator;
 
-
+//Main Frame which show different uc to launch
 public class ManageUc extends JFrame implements ActionListener{
 	private JButton indicator, calculateRate, compare; 
 	Communicator com;
@@ -58,16 +59,19 @@ public class ManageUc extends JFrame implements ActionListener{
 		this.getContentPane().setLayout(new FlowLayout());
 		this.initializeButton();
 		this.setResizable(false);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.validate();
+		
 	}
 	
 	public void initializeButton(){
 		indicator = new JButton("Statistiques");
-		calculateRate = new JButton("calculateRate");
-		compare = new JButton("compare");
+		calculateRate = new JButton("Calcul du taux");
+		compare = new JButton("Comparaison");
 
 		indicator.addActionListener(this);
 		calculateRate.addActionListener(this);
+		compare.addActionListener(this);
 //		JLabel title = new JLabel("ADMINISTRATION");
 	    Border Black;
 	    Black = BorderFactory.createLineBorder(Color.black);
@@ -100,11 +104,9 @@ public class ManageUc extends JFrame implements ActionListener{
 		}
 		else if(e.getSource().equals(calculateRate)){
 			new Ihm(this.getCom());
-			System.out.println("Calcul taux");
 		}
 		else if(e.getSource().equals(compare)){
-
-			System.out.println("Comparaison");
+			new IhmComparaison(this.getCom());
 		}
 		} catch (Exception e1) {
 			e1.printStackTrace();
